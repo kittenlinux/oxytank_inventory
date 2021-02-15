@@ -37,15 +37,15 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['form_validation_required']		= 'The {field} field is required.';
-$lang['form_validation_isset']			= 'The {field} field must have a value.';
-$lang['form_validation_valid_email']		= 'The {field} field must contain a valid email address.';
+$lang['form_validation_required']		= 'จำเป็นต้องกรอกช่อง{field}';
+$lang['form_validation_isset']			= 'ควรมีข้อมูลในช่อง{field}';
+$lang['form_validation_valid_email']		= 'จำเป็นต้องกรอกรูปแบบ{field}ที่ถูกต้อง เช่น user@example.com';
 $lang['form_validation_valid_emails']		= 'The {field} field must contain all valid email addresses.';
 $lang['form_validation_valid_url']		= 'The {field} field must contain a valid URL.';
 $lang['form_validation_valid_ip']		= 'The {field} field must contain a valid IP.';
 $lang['form_validation_valid_base64']		= 'The {field} field must contain a valid Base64 string.';
-$lang['form_validation_min_length']		= 'The {field} field must be at least {param} characters in length.';
-$lang['form_validation_max_length']		= 'The {field} field cannot exceed {param} characters in length.';
+$lang['form_validation_min_length']		= '{field}ต้องมีความยาวอย่างต่ำ {param} ตัวอักษร';
+$lang['form_validation_max_length']		= '{field}ต้องมีความยาวน้อยกว่าหรือเท่ากับ {param} ตัวอักษร';
 $lang['form_validation_exact_length']		= 'The {field} field must be exactly {param} characters in length.';
 $lang['form_validation_alpha']			= 'The {field} field may only contain alphabetical characters.';
 $lang['form_validation_alpha_numeric']		= 'The {field} field may only contain alpha-numeric characters.';
@@ -55,9 +55,9 @@ $lang['form_validation_numeric']		= 'The {field} field must contain only numbers
 $lang['form_validation_is_numeric']		= 'The {field} field must contain only numeric characters.';
 $lang['form_validation_integer']		= 'The {field} field must contain an integer.';
 $lang['form_validation_regex_match']		= 'The {field} field is not in the correct format.';
-$lang['form_validation_matches']		= 'The {field} field does not match the {param} field.';
+$lang['form_validation_matches']		= 'ช่อง{field} ไม่ตรงกับช่อง{param} โปรดกรอกข้อมูลให้ตรงกันอีกครั้ง';
 $lang['form_validation_differs']		= 'The {field} field must differ from the {param} field.';
-$lang['form_validation_is_unique'] 		= 'The {field} field must contain a unique value.';
+$lang['form_validation_is_unique'] 		= 'มีผู้ใช้งาน{field}นี้อยู่แล้ว โปรดเลือก{field}ใหม่';
 $lang['form_validation_is_natural']		= 'The {field} field must only contain digits.';
 $lang['form_validation_is_natural_no_zero']	= 'The {field} field must only contain digits and must be greater than zero.';
 $lang['form_validation_decimal']		= 'The {field} field must contain a decimal number.';
