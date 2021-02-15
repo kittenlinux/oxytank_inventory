@@ -222,15 +222,13 @@ $(function() {
     $('#datetimepicker_startdate').datetimepicker({
         format: "YYYY-MM-DD",
         useCurrent: false,
-        defaultDate: new Date(start_date.setSeconds(todaySeconds + 1)),
-        minDate: new Date(new Date().setDate(todayDate - 30)),
+        defaultDate: new Date(start_date.setDate(todayDate - 30)),
         maxDate: new Date()
     });
     $('#datetimepicker_enddate').datetimepicker({
         format: "YYYY-MM-DD",
         useCurrent: false,
         defaultDate: new Date(new Date().setDate(todayDate)),
-        minDate: new Date(new Date().setDate(todayDate - 30)),
         maxDate: new Date()
     });
 });
