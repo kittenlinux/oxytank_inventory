@@ -166,30 +166,6 @@ $(document).ready(function() {
     $('#example').DataTable();
 });
 
-function Linenoti_delconfirm() {
-    Swal.fire({
-        title: 'ยืนยันการลบโทเค็น ?',
-        text: "หากต้องการใช้งานการแจ้งเตือนอีกครั้ง จะต้องนำโทเค็นไลน์โนติฟายมาเพิ่มเข้าสู่ระบบในภายหลัง",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'ใช่ ต้องการลบ',
-        cancelButtonText: 'ยกเลิก',
-        allowEnterKey: 'false'
-    }).then(function(result) {
-        if (result.value) {
-            // Swal.fire(
-            //     title: 'สำเร็จ!',
-            //     text: 'ลบโทเค็นเรียบร้อยแล้ว.',
-            //     icon: 'success'
-            // )
-            window.location.href =
-                "<?php echo base_url().'Dashboard/LINENotify_Remove/'.$user->lineapi_key; ?>";
-        }
-    })
-}
-
 function Bike_switchconfirm(bike_key, bike_plate) {
     Swal.fire({
         title: 'ยืนยันการเปลี่ยนสถานะ ?',
