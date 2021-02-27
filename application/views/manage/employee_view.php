@@ -1,12 +1,12 @@
 <?php
   defined('BASEPATH') or exit('No direct script access allowed');
 
-  $this->db->from('tank');
+  $this->db->from('employee');
 
   $count = $this->db->count_all_results();
 
   $this->db->select();
-  $this->db->from('tank');
+  $this->db->from('employee');
 
   $query = $this->db->get()->result_array();
 ?>
@@ -17,14 +17,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>ถังแก๊สออกซิเจน</h2>
-                    <p>รายชื่อถังแก๊สออกซิเจนในระบบ</p>
+                    <h2>ผู้ทำการเบิก-จ่าย</h2>
+                    <p>รายชื่อผู้ทำการเบิก-จ่ายในระบบ</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
                         <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
                         <li><a href="<?php echo base_url(); ?>Manage">จัดการข้อมูล</a></li>
-                        <li>ถังแก๊สออกซิเจน</li>
+                        <li>ผู้ทำการเบิก-จ่าย</li>
                     </ul>
                 </div>
             </div>
@@ -45,18 +45,17 @@
                     <?php echo isset($_SESSION['result_message']) ? "<div class=\"alert alert-".$_SESSION['result_message_type']."\">".$_SESSION['result_message']."</div>" : false; ?>
                     <div class="container">
                         <div class="col-md-12">
-                            <h4 class="classic-title"><span>รายชื่อถังแก๊สออกซิเจน</span></h4>
+                            <h4 class="classic-title"><span>รายชื่อผู้ทำการเบิก-จ่าย</span></h4>
                             <p style="text-align: right;">
                                 <button type="button" class="btn btn-success"
-                                    onclick="location.href='<?php echo base_url();?>Manage/Tank_Add';">เพิ่มถังแก๊สออกซิเจน</button>
+                                    onclick="location.href='<?php echo base_url();?>Manage/Employee_Add';">เพิ่มชื่อผู้ทำการเบิก-จ่าย</button>
                             </p>
 
                             <table id="example" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>หมายเลขตัวถัง</th>
-                                        <th>สถานะ</th>
+                                        <th>ชื่อผู้ทำการเบิก-จ่าย</th>
                                         <th>การดำเนินการ</th>
                                     </tr>
                                 </thead>
@@ -64,27 +63,16 @@
                                     <?php if ($count != 0) {
     $cnt = 0;
 
-    foreach ($query as $tank) {
+    foreach ($query as $employee) {
         $cnt++; ?>
                                     <tr>
                                         <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
-                                        <td><?php echo $tank['tank_number'] ?></td>
-                                        <td><?php if ($tank['status']=='1') {
-            echo "<span style='color:green;font-weight:bold'>เปิด</span>";
-        } elseif ($tank['status']=='0') {
-            echo "<span style='color:red;font-weight:bold'>ปิด</span>";
-        } ?></td>
+                                        <td><?php echo $employee['employee_name'] ?></td>
                                         <td>
-                                            <?php if ($tank['status']=='1') {?><button type="button"
-                                                class="btn btn-danger"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">ปิด</button><?php } ?>
-                                            <?php if ($tank['status']=='0') {?><button type="button"
-                                                class="btn btn-success"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">เปิด</button><?php } ?>
                                             <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $tank['id']; ?>';">แก้ไข</button>
+                                                onclick="location.href='<?php echo base_url(); ?>Manage/Employee_Edit/<?php echo $employee['id']; ?>';">แก้ไข</button>
                                             <button type="button" class="btn btn-danger"
-                                                onclick="Tank_delconfirm(<?php echo $tank['id']; ?>, <?php echo $tank['tank_number'] ?>)">ลบ</button>
+                                                onclick="Employee_delconfirm(<?php echo $employee['id']; ?>, <?php echo $employee['employee_name'] ?>)">ลบ</button>
                                         </td>
                                     </tr>
                                     <?php
@@ -94,8 +82,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>No.</th>
-                                        <th>หมายเลขตัวถัง</th>
-                                        <th>สถานะ</th>
+                                        <th>ชื่อผู้ทำการเบิก-จ่าย</th>
                                         <th>การดำเนินการ</th>
                                     </tr>
                                 </tfoot>
@@ -112,7 +99,7 @@
 </section>
 
 <script>
-var newTitle = "ถังแก๊สออกซิเจน | Oxygen Tank Inventory";
+var newTitle = "ผู้ทำการเบิก-จ่าย | Oxygen Tank Inventory";
 if (document.title != newTitle) {
     document.title = newTitle;
 }
@@ -121,20 +108,20 @@ $(document).ready(function() {
     $('#example').DataTable();
 });
 
-function Tank_delconfirm(id, tank_number) {
+function Employee_delconfirm(id, employee_name) {
     Swal.fire({
-        title: 'ยืนยันการลบถังแก๊สออกซิเจน ?',
-        text: "ยืนยันการลบถังแก๊สออกซิเจน หมายเลขตัวถัง " + tank_number + " ?",
+        title: 'ยืนยันการลบผู้ทำการเบิก-จ่าย ?',
+        text: "ยืนยันการลบชื่อผู้ทำการเบิก-จ่าย " + employee_name + " ?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'ลบถังแก๊สออกซิเจน',
+        confirmButtonText: 'ลบชื่อผู้ทำการเบิก-จ่าย',
         cancelButtonText: 'ยกเลิก',
         allowEnterKey: 'false'
     }).then(function(result) {
         if (result.value) {
-            window.location.href = "<?php echo base_url().'Manage/Tank_remove/' ?>" + id;
+            window.location.href = "<?php echo base_url().'Manage/Employee_remove/' ?>" + id;
         }
     })
 }

@@ -139,7 +139,7 @@ class Manage extends Auth_Controller
 
     public function Employee_Add_Action()
     {
-        $this->form_validation->set_rules('employee_name', 'ชื่อผู้เบิก', 'trim|required|is_unique[employee.employee_name]');
+        $this->form_validation->set_rules('employee_name', 'ชื่อผู้ทำการเบิก-จ่าย', 'trim|required|is_unique[employee.employee_name]');
 
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
@@ -149,8 +149,8 @@ class Manage extends Auth_Controller
                 'employee_name' => $_POST['employee_name']
             );
             $this->db->insert('employee', $data);
-            echo json_encode(['success'=>'เพิ่มข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !']);
-            $_SESSION['result_message'] = 'เพิ่มข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !';
+            echo json_encode(['success'=>'เพิ่มข้อมูลชื่อผู้ทำการเบิก-จ่าย '.$_POST['employee_name'].' แล้ว !']);
+            $_SESSION['result_message'] = 'เพิ่มข้อมูลชื่อผู้ทำการเบิก-จ่าย '.$_POST['employee_name'].' แล้ว !';
             $_SESSION['result_message_type'] = 'success';
             $this->session->mark_as_flash('result_message');
         }
@@ -163,7 +163,7 @@ class Manage extends Auth_Controller
 
     public function Employee_Edit_Action($id)
     {
-        $this->form_validation->set_rules('employee_name', 'ชื่อผู้เบิก', 'trim|required');
+        $this->form_validation->set_rules('employee_name', 'ชื่อผู้ทำการเบิก-จ่าย', 'trim|required');
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
             echo json_encode(['error'=>$errors]);
@@ -173,8 +173,8 @@ class Manage extends Auth_Controller
                 );
             $this->db->where('id', $id);
             $this->db->update('employee', $data);
-            echo json_encode(['success'=>'แก้ไขข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !']);
-            $_SESSION['result_message'] = 'แก้ไขข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !';
+            echo json_encode(['success'=>'แก้ไขข้อมูลชื่อผู้ทำการเบิก-จ่าย '.$_POST['employee_name'].' แล้ว !']);
+            $_SESSION['result_message'] = 'แก้ไขข้อมูลชื่อผู้ทำการเบิก-จ่าย '.$_POST['employee_name'].' แล้ว !';
             $_SESSION['result_message_type'] = 'success';
             $this->session->mark_as_flash('result_message');
         }
@@ -193,7 +193,7 @@ class Manage extends Auth_Controller
 
         $this->db->delete('employee', array(id => $id));
 
-        $_SESSION['result_message'] = 'ลบชื่อผู้เบิก-จ่าย '.$query0.' แล้ว !';
+        $_SESSION['result_message'] = 'ลบชื่อผู้ทำการเบิก-จ่าย '.$query0.' แล้ว !';
         $_SESSION['result_message_type'] = 'danger';
         $this->session->mark_as_flash('result_message');
 
