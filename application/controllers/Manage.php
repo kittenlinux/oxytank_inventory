@@ -69,8 +69,6 @@ class Manage extends Auth_Controller
             $_SESSION['result_message'] = 'แก้ไขข้อมูลหมายเลขตัวถัง '.$_POST['tank_number'].' แล้ว !';
             $_SESSION['result_message_type'] = 'success';
             $this->session->mark_as_flash('result_message');
-
-            $_SESSION['bike_key']='';
         }
     }
 
