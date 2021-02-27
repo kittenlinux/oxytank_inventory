@@ -148,9 +148,9 @@ class Manage extends Auth_Controller
             $data = array(
                 'employee_name' => $_POST['employee_name']
             );
-            $this->db->insert('tank', $data);
-            echo json_encode(['success'=>'เพิ่มข้อมูลชื่อผู้เบิก '.$_POST['employee_name'].' แล้ว !']);
-            $_SESSION['result_message'] = 'เพิ่มข้อมูลชื่อผู้เบิก '.$_POST['employee_name'].' แล้ว !';
+            $this->db->insert('employee', $data);
+            echo json_encode(['success'=>'เพิ่มข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !']);
+            $_SESSION['result_message'] = 'เพิ่มข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !';
             $_SESSION['result_message_type'] = 'success';
             $this->session->mark_as_flash('result_message');
         }
@@ -163,9 +163,40 @@ class Manage extends Auth_Controller
 
     public function Employee_Edit_Action($id)
     {
+        $this->form_validation->set_rules('employee_name', 'ชื่อผู้เบิก', 'trim|required');
+        if ($this->form_validation->run()===false) {
+            $errors = validation_errors();
+            echo json_encode(['error'=>$errors]);
+        } else {
+            $data = array(
+                'employee_name' => $_POST['employee_name']
+                );
+            $this->db->where('id', $id);
+            $this->db->update('employee', $data);
+            echo json_encode(['success'=>'แก้ไขข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !']);
+            $_SESSION['result_message'] = 'แก้ไขข้อมูลชื่อผู้เบิก-จ่าย '.$_POST['employee_name'].' แล้ว !';
+            $_SESSION['result_message_type'] = 'success';
+            $this->session->mark_as_flash('result_message');
+        }
     }
 
     public function Employee_Remove($id)
     {
+        $this->db->select(array('id','employee_name'));
+        $this->db->from('employee');
+        $this->db->where('id', $id);
+    
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $query0 = $row->employee_name;
+        }
+
+        $this->db->delete('employee', array(id => $id));
+
+        $_SESSION['result_message'] = 'ลบชื่อผู้เบิก-จ่าย '.$query0.' แล้ว !';
+        $_SESSION['result_message_type'] = 'danger';
+        $this->session->mark_as_flash('result_message');
+
+        redirect('Manage/Employee');
     }
 }
