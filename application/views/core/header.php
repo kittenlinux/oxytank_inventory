@@ -51,9 +51,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
         media="screen" />
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
     var base_url = '<?php echo base_url(); ?>';
@@ -90,7 +90,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
@@ -135,8 +135,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             <!-- Start  Logo & Naviagtion  -->
             <div class="navbar navbar-default navbar-top">
-                <?php if ($this->ion_auth->logged_in()) {
-          $this->load->view('core/menu_nav_auth');
+                <?php if ($this->ion_auth->logged_in()&&$this->ion_auth->is_admin()) {
+          $this->load->view('core/menu_nav_admin');
+      } elseif ($this->ion_auth->logged_in()) {
+          $this->load->view('core/menu_nav_user');
       } else {
           $this->load->view('core/menu_nav');
       }

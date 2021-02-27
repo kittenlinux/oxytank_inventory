@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
  
-class Dashboard extends Auth_Controller
+class Manage extends Auth_Controller
 {
     public function __construct()
     {
@@ -13,37 +13,60 @@ class Dashboard extends Auth_Controller
     
     public function index()
     {
-        $this->render('dashboard/index_view');
+        $this->render('manage/tank_view');
     }
 
-    public function Take_Add()
+    public function Tank()
     {
-        $this->render('dashboard/takeadd_view');
+        $this->render('manage/tank_view');
     }
 
-    public function Take_Add_Action()
+    public function Tank_Add()
     {
+        $this->render('manage/tankadd_view');
     }
 
-    public function Data_Edit_Take($id)
-    {
-        $this->render('dashboard/dataedit_takeview');
-    }
-
-    public function Data_Edit_TakeAction($id)
+    public function Tank_Add_Action()
     {
     }
 
-    public function Data_Edit_TakeReturn($id)
+    public function Tank_Edit($id)
     {
-        $this->render('dashboard/dataedit_takereturnview');
+        $this->render('manage/tank_edit_view');
     }
 
-    public function Data_Edit_TakeReturnAction($id)
+    public function Tank_Edit_Action($id)
     {
     }
 
-    public function Data_Remove($id)
+    public function Tank_Remove($id)
+    {
+    }
+
+    public function Employee()
+    {
+        $this->render('manage/employee_view');
+    }
+
+    public function Employee_Add()
+    {
+        $this->render('manage/tank_add_view');
+    }
+
+    public function Employee_Add_Action()
+    {
+    }
+
+    public function Employee_Edit($id)
+    {
+        $this->render('manage/employee_edit_view');
+    }
+
+    public function Employee_Edit_Action($id)
+    {
+    }
+
+    public function Employee_Remove($id)
     {
     }
 

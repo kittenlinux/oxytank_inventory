@@ -8,7 +8,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </button>
         <!-- End Toggle Nav Link For Mobiles -->
         <a class="navbar-brand" href="<?php echo base_url(); ?>">
-        Oxygen Tank Inventory
+        Oxygen Tank Inventory (Admin)
         </a>
     </div>
     <div class="navbar-collapse collapse">
@@ -18,10 +18,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <a id="nav-bar-home" href="<?php echo base_url(); ?>">หน้าหลัก</a>
             </li>
             <li>
-                <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">จัดการข้อมูล</a>
+                <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">เบิก-จ่าย</a>
             </li>
             <li>
-                <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">พิมพ์</a>
+                <a id="nav-bar-printing" href="<?php echo base_url(); ?>Printing">พิมพ์</a>
+            </li>
+            <li>
+                <a id="nav-bar-manage" href="<?php echo base_url(); ?>Manage">จัดการข้อมูล</a>
+                <ul class="dropdown">
+                    <li><a href="<?php echo base_url(); ?>Manage/Tank">ถังแก๊สออกซิเจน</a></li>
+                    <li><a href="<?php echo base_url(); ?>Manage/Employee">ผู้ทำการเบิก-จ่าย</a></li>
+                </ul>
             </li>
             <li>
                 <a id="nav-bar-member" href="<?php echo base_url(); ?>User">ผู้ใช้งาน</a>
@@ -41,10 +48,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <a id="nav-bar-home" href="<?php echo base_url(); ?>">หน้าหลัก</a>
     </li>
     <li>
-        <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">จัดการข้อมูล</a>
+        <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">เบิก-จ่าย</a>
     </li>
     <li>
-        <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">พิมพ์</a>
+        <a id="nav-bar-printing" href="<?php echo base_url(); ?>Printing">พิมพ์</a>
+    </li>
+    <li>
+        <a id="nav-bar-manage" href="<?php echo base_url(); ?>User">จัดการข้อมูล</a>
+        <ul class="dropdown">
+            <li><a href="<?php echo base_url(); ?>Manage/Tank">ถังแก๊สออกซิเจน</a></li>
+            <li><a href="<?php echo base_url(); ?>Manage/Employee">ผู้ทำการเบิก-จ่าย</a></li>
+        </ul>
     </li>
     <li>
         <a id="nav-bar-member" href="<?php echo base_url(); ?>User">ผู้ใช้งาน</a>
