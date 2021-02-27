@@ -25,6 +25,15 @@ class Dashboard extends Auth_Controller
     {
     }
 
+    public function Returning($id)
+    {
+        $this->render('dashboard/return_view');
+    }
+
+    public function Returning_Action($id)
+    {
+    }
+
     public function Data_Edit_Take($id)
     {
         $_SESSION['id']=$id;

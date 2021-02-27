@@ -9,6 +9,7 @@
 
   $this->db->select();
   $this->db->from('inventory');
+  $this->db->order_by('id', 'DESC');
 
   $query = $this->db->get()->result_array();
 ?>
@@ -94,7 +95,7 @@
                             <h4 class="classic-title"><span>รายละเอียดรายการ</span></h4>
                             <p style="text-align: right;">
                                 <button type="button" class="btn btn-success"
-                                    onclick="location.href='<?php echo base_url();?>Dashboard/Bike_Add';">เบิกถังแก๊สออกซิเจน</button>
+                                    onclick="location.href='<?php echo base_url();?>Dashboard/Take_Add';">เบิกถังแก๊สออกซิเจน</button>
                             </p>
 
                             <table id="example" class="display" style="width:100%">
@@ -132,8 +133,15 @@
             echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
         } ?></td>
                                         <td>
+                                        <?php if ($inventory['status']=='0') { ?>
+                                            <button type="button" class="btn btn-success"
+                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Returning/<?php echo $inventory['id']; ?>';">น่าส่ง</button>
                                             <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_Take/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                        <?php } elseif ($inventory['status']=='1') { ?>
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_TakeReturn/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                        <?php } ?>
                                             <button type="button" class="btn btn-danger"
                                                 onclick="Tank_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
                                         </td>
