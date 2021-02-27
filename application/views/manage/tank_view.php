@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
-                    <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
+                        <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
                         <li><a href="<?php echo base_url(); ?>Manage">จัดการข้อมูล</a></li>
                         <li>ถังแก๊สออกซิเจน</li>
                     </ul>
@@ -47,7 +47,7 @@
                         <div class="col-md-12">
                             <h4 class="classic-title"><span>รายชื่อถังแก๊สออกซิเจน</span></h4>
                             <p style="text-align: right;">
-                                <button type="button" class="btn btn-primary"
+                                <button type="button" class="btn btn-success"
                                     onclick="location.href='<?php echo base_url();?>Manage/Tank_Add';">เพิ่มถังแก๊สออกซิเจน</button>
                             </p>
 
@@ -67,19 +67,24 @@
     foreach ($query as $tank) {
         $cnt++; ?>
                                     <tr>
-                                        <td><?php echo $cnt ?></td>
+                                        <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
                                         <td><?php echo $tank['tank_number'] ?></td>
                                         <td><?php if ($tank['status']=='1') {
-            echo "เปิด";
+            echo "<span style='color:green;font-weight:bold'>เปิด</span>";
         } elseif ($tank['status']=='0') {
-            echo "ปิด";
+            echo "<span style='color:red;font-weight:bold'>ปิด</span>";
         } ?></td>
                                         <td>
-                                        <?php if ($tank['status']=='1') {?><button type="button" class="btn btn-danger" onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">ปิด</button><?php } ?>
-                                        <?php if ($tank['status']=='0') {?><button type="button" class="btn btn-success" onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">เปิด</button><?php } ?>
-                                        <button type="button" class="btn btn-primary"
+                                            <?php if ($tank['status']=='1') {?><button type="button"
+                                                class="btn btn-danger"
+                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">ปิด</button><?php } ?>
+                                            <?php if ($tank['status']=='0') {?><button type="button"
+                                                class="btn btn-success"
+                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">เปิด</button><?php } ?>
+                                            <button type="button" class="btn btn-primary"
                                                 onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $tank['id']; ?>';">แก้ไข</button>
-                                                <button type="button" class="btn btn-danger" onclick="Tank_delconfirm(<?php echo $tank['id']; ?>, <?php echo $tank['tank_number'] ?>)">ลบ</button>
+                                            <button type="button" class="btn btn-danger"
+                                                onclick="Tank_delconfirm(<?php echo $tank['id']; ?>, <?php echo $tank['tank_number'] ?>)">ลบ</button>
                                         </td>
                                     </tr>
                                     <?php
@@ -127,7 +132,7 @@ function Tank_delconfirm(id, tank_number) {
         confirmButtonText: 'ลบถังแก๊สออกซิเจน',
         cancelButtonText: 'ยกเลิก',
         allowEnterKey: 'false'
-    }).then(function (result) {
+    }).then(function(result) {
         if (result.value) {
             // Swal.fire(
             //     title: 'สำเร็จ!',
