@@ -74,11 +74,55 @@ class Manage extends Auth_Controller
         }
     }
 
+    public function Tank_Switch($id)
+    {
+        $this->db->select(array('id','tank_number','status'));
+        $this->db->from('tank');
+        $this->db->where('id', $id);
+    
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $query0 = $row->id;
+            $query1 = $row->tank_number;
+            $query2 = $row->status;
+        }
+
+        if ($query2=='1') {
+            $new_status = '0';
+            $new_status_desc = 'ปิดใช้งาน';
+        } elseif ($query2=='0') {
+            $new_status = '1';
+            $new_status_desc = 'เปิดใช้งาน';
+        }
+    
+        $data = array(
+                'id' => $id,
+                'status' => $new_status
+            );
+        $this->db->where('id', $query0);
+        $this->db->update('tank', $data);
+
+        $_SESSION['result_message'] = $new_status_desc.'ถังแก๊สออกซิเจน หมายเลขตัวถัง '.$query1.' แล้ว !';
+        $_SESSION['result_message_type'] = 'success';
+        $this->session->mark_as_flash('result_message');
+
+        redirect('Manage/Tank');
+    }
+
     public function Tank_Remove($id)
     {
+        $this->db->select(array('id','tank_number'));
+        $this->db->from('tank');
+        $this->db->where('id', $id);
+    
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $query0 = $row->tank_number;
+        }
+
         $this->db->delete('tank', array(id => $id));
 
-        $_SESSION['result_message'] = 'ลบถังออกซิเจนแล้ว !';
+        $_SESSION['result_message'] = 'ลบถังแก๊สออกซิเจน หมายเลขตัวถัง '.$query0.' แล้ว !';
         $_SESSION['result_message_type'] = 'danger';
         $this->session->mark_as_flash('result_message');
 
@@ -104,8 +148,7 @@ class Manage extends Auth_Controller
             echo json_encode(['error'=>$errors]);
         } else {
             $data = array(
-                'employee_name' => $_POST['employee_name'],
-                'status' => '1'
+                'employee_name' => $_POST['employee_name']
             );
             $this->db->insert('tank', $data);
             echo json_encode(['success'=>'เพิ่มข้อมูลชื่อผู้เบิก '.$_POST['employee_name'].' แล้ว !']);
@@ -127,53 +170,4 @@ class Manage extends Auth_Controller
     public function Employee_Remove($id)
     {
     }
-
-    // public function Bike_Switch($bike_key)
-    // {
-    //     $user = $this->ion_auth->user()->row();
-        
-    //     $this->db->select(array('key','user','status'));
-    //     $this->db->from('bike');
-    //     $this->db->where('key', $bike_key);
-    
-    //     $query = $this->db->get();
-    //     foreach ($query->result() as $row) {
-    //         $query1 = $row->key;
-    //         $query2 = $row->user;
-    //         $query3 = $row->status;
-    //     }
-
-    //     if ($query2 == null) {
-    //         redirect('Dashboard');
-    //     } elseif ($user->id==$query2) {
-    //         if ($query3=='1') {
-    //             $new_status = '0';
-    //             $new_status_desc = 'ปิดใช้งาน';
-    //         } elseif ($query3=='0') {
-    //             $new_status = '1';
-    //             $new_status_desc = 'เปิดใช้งาน';
-    //         }
-
-    //         $user = $this->ion_auth->user()->row();
-
-    //         $this->db->select(array('id', 'key', 'plate', 'status'));
-    //         $this->db->from('bike');
-    //         $this->db->where('key', $bike_key);
-
-    //         $query2 = $this->db->get();
-    
-    //         $data = array(
-    //             'id' => $query2->row()->id,
-    //             'status' => $new_status
-    //         );
-    //         $this->db->where('id', $query2->row()->id);
-    //         $this->db->update('bike', $data);
-
-    //         $_SESSION['result_message'] = $new_status_desc.'รถจักรยานยนต์หมายเลขทะเบียน '.$query2->row()->plate.' แล้ว !';
-    //         $_SESSION['result_message_type'] = 'success';
-    //         $this->session->mark_as_flash('result_message');
-
-    //         redirect('Dashboard');
-    //     }
-    // }
 }
