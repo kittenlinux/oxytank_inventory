@@ -158,6 +158,7 @@ class Manage extends Auth_Controller
 
     public function Employee_Edit($id)
     {
+        $_SESSION['id']=$id;
         $this->render('manage/employee_edit_view');
     }
 
