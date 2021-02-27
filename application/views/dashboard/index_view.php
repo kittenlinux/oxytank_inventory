@@ -19,13 +19,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>จัดการข้อมูล</h2>
-                    <p>จัดการรายละเอียดการเบิก-จ่ายถังออกซิเจน</p>
+                    <h2>ข้อมูลการเบิก-จ่าย</h2>
+                    <p>จัดการรายละเอียดการเบิก-จ่ายถังแก๊สออกซิเจน</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
                         <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
-                        <li>จัดการข้อมูล</li>
+                        <li>ข้อมูลการเบิก-จ่าย</li>
                     </ul>
                 </div>
             </div>
@@ -93,8 +93,8 @@
                         <div class="col-md-12">
                             <h4 class="classic-title"><span>รายละเอียดรายการ</span></h4>
                             <p style="text-align: right;">
-                                <button type="button" class="btn btn-primary"
-                                    onclick="location.href='<?php echo base_url();?>Dashboard/Bike_Add';">เบิกถังออกซิเจน</button>
+                                <button type="button" class="btn btn-success"
+                                    onclick="location.href='<?php echo base_url();?>Dashboard/Bike_Add';">เบิกถังแก๊สออกซิเจน</button>
                             </p>
 
                             <table id="example" class="display" style="width:100%">
@@ -111,26 +111,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if ($count != 0) {
+    $cnt = 0;
+
+    foreach ($query as $inventory) {
+        $cnt++; ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>12345</td>
-                                        <td>01/01/2021</td>
-                                        <td>พิกุลทอง</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>ยังไม่นำส่ง</td>
-                                        <td>x</td>
+                                        <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
+                                        <td><?php echo $inventory['tank_number'] ?></td>
+                                        <td><?php echo $inventory['take_date'] ?></td>
+                                        <td><?php echo $inventory['take_name'] ?></td>
+                                        <?php if ($inventory['status']=='0') { ?>
+                                        <td><?php echo "-" ?></td>
+                                        <td><?php echo "-" ?></td><?php } elseif ($inventory['status']=='1') { ?>
+                                        <td><?php echo $inventory['return_date'] ?></td>
+                                        <td><?php echo $inventory['return_name'] ?></td><?php } ?>
+                                        <td><?php if ($inventory['status']=='0') {
+            echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
+        } elseif ($inventory['status']=='1') {
+            echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
+        } ?></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                            <button type="button" class="btn btn-danger"
+                                                onclick="Tank_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>55656</td>
-                                        <td>20/01/2021</td>
-                                        <td>พจมาน</td>
-                                        <td>25/01/2021</td>
-                                        <td>พิกุลทอง</td>
-                                        <td>นำส่งแล้ว</td>
-                                        <td>x</td>
-                                    </tr>
+                                    <?php
+    }
+} ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -157,7 +167,7 @@
 </section>
 
 <script>
-var newTitle = "จัดการข้อมูล | Oxygen Tank Inventory";
+var newTitle = "ข้อมูลการเบิก-จ่าย | Oxygen Tank Inventory";
 if (document.title != newTitle) {
     document.title = newTitle;
 }
