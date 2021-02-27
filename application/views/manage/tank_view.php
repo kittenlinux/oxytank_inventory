@@ -84,7 +84,7 @@
                                             <button type="button" class="btn btn-primary"
                                                 onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $tank['id']; ?>';">แก้ไข</button>
                                             <button type="button" class="btn btn-danger"
-                                                onclick="Tank_delconfirm(<?php echo $tank['id']; ?>, <?php echo $tank['tank_number'] ?>)">ลบ</button>
+                                                onclick="Tank_delconfirm(<?php echo $tank['id']; ?>, '<?php echo $tank['tank_number'] ?>')">ลบ</button>
                                         </td>
                                     </tr>
                                     <?php

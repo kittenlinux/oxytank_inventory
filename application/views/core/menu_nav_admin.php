@@ -27,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <a id="nav-bar-manage" href="<?php echo base_url(); ?>Manage">จัดการข้อมูล</a>
                 <ul class="dropdown">
                     <li><a href="<?php echo base_url(); ?>Manage/Tank">ถังแก๊สออกซิเจน</a></li>
-                    <li><a href="<?php echo base_url(); ?>Manage/Employee">ผู้ทำการเบิก-จ่าย</a></li>
+                    <li><a href="<?php echo base_url(); ?>Manage/Employee">ชื่อผู้ทำการเบิก-จ่าย</a></li>
                 </ul>
             </li>
             <li>
@@ -57,7 +57,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <a id="nav-bar-manage" href="<?php echo base_url(); ?>User">จัดการข้อมูล</a>
         <ul class="dropdown">
             <li><a href="<?php echo base_url(); ?>Manage/Tank">ถังแก๊สออกซิเจน</a></li>
-            <li><a href="<?php echo base_url(); ?>Manage/Employee">ผู้ทำการเบิก-จ่าย</a></li>
+            <li><a href="<?php echo base_url(); ?>Manage/Employee">ชื่อผู้ทำการเบิก-จ่าย</a></li>
         </ul>
     </li>
     <li>

@@ -17,14 +17,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>ผู้ทำการเบิก-จ่าย</h2>
+                    <h2>ชื่อผู้ทำการเบิก-จ่าย</h2>
                     <p>รายชื่อผู้ทำการเบิก-จ่ายในระบบ</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
                         <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
                         <li><a href="<?php echo base_url(); ?>Manage">จัดการข้อมูล</a></li>
-                        <li>ผู้ทำการเบิก-จ่าย</li>
+                        <li>ชื่อผู้ทำการเบิก-จ่าย</li>
                     </ul>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                                             <button type="button" class="btn btn-primary"
                                                 onclick="location.href='<?php echo base_url(); ?>Manage/Employee_Edit/<?php echo $employee['id']; ?>';">แก้ไข</button>
                                             <button type="button" class="btn btn-danger"
-                                                onclick="Employee_delconfirm(<?php echo $employee['id']; ?>, <?php echo $employee['employee_name'] ?>)">ลบ</button>
+                                                onclick="Employee_delconfirm(<?php echo $employee['id']; ?>, '<?php echo $employee['employee_name'] ?>')">ลบ</button>
                                         </td>
                                     </tr>
                                     <?php
@@ -99,7 +99,7 @@
 </section>
 
 <script>
-var newTitle = "ผู้ทำการเบิก-จ่าย | Oxygen Tank Inventory";
+var newTitle = "ชื่อผู้ทำการเบิก-จ่าย | Oxygen Tank Inventory";
 if (document.title != newTitle) {
     document.title = newTitle;
 }

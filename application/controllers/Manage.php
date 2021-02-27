@@ -134,7 +134,7 @@ class Manage extends Auth_Controller
 
     public function Employee_Add()
     {
-        $this->render('manage/tank_add_view');
+        $this->render('manage/employee_add_view');
     }
 
     public function Employee_Add_Action()
