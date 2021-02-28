@@ -46,8 +46,7 @@
                 <div class="row">
                     <?php echo isset($_SESSION['result_message']) ? "<div class=\"alert alert-".$_SESSION['result_message_type']."\">".$_SESSION['result_message']."</div>" : false; ?>
                     <div class="container">
-
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="padding-bottom: 15px;">
                             <!-- Classic Heading -->
                             <h4 class="classic-title"><span>ช่วงระยะเวลารายการ</span></h4>
                             <!-- Start Contact Form -->
@@ -101,7 +100,6 @@
                             </form>
                         </div>
                         <!-- End Contact Form -->
-
                         <div class="col-md-12">
                             <h4 class="classic-title"><span>รายละเอียดรายการ</span></h4>
                             <p style="text-align: right;">
