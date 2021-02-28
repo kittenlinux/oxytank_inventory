@@ -104,7 +104,7 @@
                             <h4 class="classic-title"><span>รายละเอียดรายการ</span></h4>
                             <p style="text-align: right;">
                                 <button type="button" class="btn btn-success"
-                                    onclick="location.href='<?php echo base_url();?>Dashboard/Take_Add';">เบิกถังแก๊สออกซิเจน</button>
+                                    onclick="location.href='<?php echo base_url();?>Dashboard/Take';">เบิกถังแก๊สออกซิเจน</button>
                             </p>
 
                             <table id="example" class="display" style="width:100%">
@@ -144,7 +144,7 @@
                                         <td>
                                             <?php if ($inventory['status']=='0') { ?>
                                             <button type="button" class="btn btn-success"
-                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Returning/<?php echo $inventory['id']; ?>';">น่าส่ง</button>
+                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Returning/<?php echo $inventory['id']; ?>';">นำส่ง</button>
                                             <button type="button" class="btn btn-primary"
                                                 onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_Take/<?php echo $inventory['id']; ?>';">แก้ไข</button>
                                             <?php } elseif ($inventory['status']=='1') { ?>
@@ -152,7 +152,7 @@
                                                 onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_TakeReturn/<?php echo $inventory['id']; ?>';">แก้ไข</button>
                                             <?php } ?>
                                             <button type="button" class="btn btn-danger"
-                                                onclick="Tank_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
+                                                onclick="Data_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
                                         </td>
                                     </tr>
                                     <?php
@@ -193,9 +193,23 @@ $(document).ready(function() {
     $('#example').DataTable();
 });
 
-$(document).ready(function() {
-
-});
+function Data_delconfirm(id, tank_number) {
+    Swal.fire({
+        title: 'ยืนยันการลบข้อมูลการเบิก-จ่าย ?',
+        text: "ยืนยันการลบข้อมูลการเบิก-จ่ายของหมายเลขตัวถัง " + tank_number + " ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'ลบข้อมูล',
+        cancelButtonText: 'ยกเลิก',
+        allowEnterKey: 'false'
+    }).then(function(result) {
+        if (result.value) {
+            window.location.href = "<?php echo base_url().'Dashboard/Remove/' ?>" + id;
+        }
+    })
+}
 
 var todayDate = new Date().getDate();
 var start_date = new Date(new Date().setDate(todayDate - 1))
