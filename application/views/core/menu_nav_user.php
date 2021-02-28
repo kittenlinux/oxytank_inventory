@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <a id="nav-bar-home" href="<?php echo base_url(); ?>">หน้าหลัก</a>
             </li>
             <li>
-                <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">จัดการข้อมูล</a>
+                <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">เบิก-จ่าย</a>
             </li>
             <li>
                 <a id="nav-bar-printing" href="<?php echo base_url(); ?>Printing">พิมพ์</a>
@@ -41,7 +41,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <a id="nav-bar-home" href="<?php echo base_url(); ?>">หน้าหลัก</a>
     </li>
     <li>
-        <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">จัดการข้อมูล</a>
+        <a id="nav-bar-dashboard" href="<?php echo base_url(); ?>Dashboard">เบิก-จ่าย</a>
     </li>
     <li>
         <a id="nav-bar-printing" href="<?php echo base_url(); ?>Printing">พิมพ์</a>
