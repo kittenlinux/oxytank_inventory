@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <input type="text" class="form-control" placeholder="หมายเลขตัวถัง" id="tank_number"
-                                        name="tank_number" required value="">
+                                        name="tank_number" required value="" autofocus>
                                 </div>
                             </div>
                             <button type="submit" id="submit"

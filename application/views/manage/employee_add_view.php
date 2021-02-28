@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <input type="text" class="form-control" placeholder="ชื่อผู้ทำการเบิก-จ่าย"
-                                        id="employee_name" name="employee_name" required value="">
+                                        id="employee_name" name="employee_name" required value="" autofocus>
                                 </div>
                             </div>
                             <button type="submit" id="submit" class="btn-submit btn-system btn-large">เพิ่ม</button>
