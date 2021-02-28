@@ -132,7 +132,7 @@ $(document).ready(function() {
         $("#submit").attr("disabled", true);
 
         var take_date = $("input[name='take_date']").val();
-        var take_name = $("input[name='take_name']").val();
+        var take_name = $("#take_name").children("option").filter(":selected").text();
         var tank_number = $("input[name='tank_number']").val();
 
         $.ajax({

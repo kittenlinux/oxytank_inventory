@@ -23,6 +23,25 @@ class Dashboard extends Auth_Controller
 
     public function Take_Add_Action()
     {
+        $this->form_validation->set_rules('take_date', 'วันที่ทำรายการ', 'trim|required');
+        $this->form_validation->set_rules('take_name', 'ชื่อผู้เบิก', 'trim|required');
+        $this->form_validation->set_rules('tank_number', 'หมายเลขตัวถัง', 'trim|required');
+        if ($this->form_validation->run()===false) {
+            $errors = validation_errors();
+            echo json_encode(['error'=>$errors]);
+        } else {
+            $data = array(
+                'take_date' => $_POST['take_date'],
+                'take_name' => $_POST['take_name'],
+                'tank_number' => $_POST['tank_number'],
+                'status' => '0'
+            );
+            $this->db->insert('inventory', $data);
+            echo json_encode(['success'=>'เพิ่มข้อมูลการเบิกของถังแก๊สออกซิเจน หมายเลขตัวถัง '.$_POST['tank_number'].' แล้ว !']);
+            $_SESSION['result_message'] = 'เพิ่มข้อมูลการเบิกของถังแก๊สออกซิเจน หมายเลขตัวถัง '.$_POST['tank_number'].' แล้ว !';
+            $_SESSION['result_message_type'] = 'success';
+            $this->session->mark_as_flash('result_message');
+        }
     }
 
     public function Returning($id)
