@@ -1,14 +1,11 @@
 <?php
-  defined('BASEPATH') or exit('No direct script access allowed');
+    defined('BASEPATH') or exit('No direct script access allowed');
 
-  $this->db->select(array('tank_number'));
-  $this->db->from('inventory');
-  $this->db->where('id', $_SESSION['id']);
+  $this->db->select();
+  $this->db->from('tank');
+  $this->db->where('status', '1');
 
-  $query = $this->db->get();
-  foreach ($query->result() as $row) {
-      $query1 = $row->tank_number;
-  }
+  $query1 = $this->db->get()->result_array();
 
   $this->db->select();
   $this->db->from('employee');
@@ -21,14 +18,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>นำส่งถังแก๊สออกซิเจน<br />หมายเลขตัวถัง <?php echo $query1; ?></h2>
-                    <p>ทำรายการนำส่งถังแก๊สออกซิเจน</p>
+                    <h2>นำส่งถังแก๊สออกซิเจนด้วยหมายเลขตัวถัง</h2>
+                    <p>ทำรายการนำส่งถังแก๊สออกซิเจน ด้วยการสแกนบาร์โค้ดหมายเลขตัวถัง</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
                         <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
                         <li><a href="<?php echo base_url(); ?>Dashboard">ข้อมูลการเบิก-จ่าย</a></li>
-                        <li>นำส่งถังแก๊สออกซิเจน</li>
+                        <li>นำส่งถังแก๊สออกซิเจนด้วยหมายเลขตัวถัง</li>
                     </ul>
                 </div>
             </div>
@@ -69,7 +66,7 @@
                                 <div class="controls">
                                     <select class="form-control" id="return_name" name="return_name"
                                         onchange="enable_submit()" onfocus="enable_submit()">
-                                        <option value="0" disabled selected>เลือกชื่อผู้นำส่ง</option>
+                                        <option value="0" disabled selected>เลือกชื่อนำส่ง</option>
                                         <?php foreach ($query2 as $employee) {
     echo "<option value=\"".$employee['employee_name']."\">".$employee['employee_name']."</option>";
 }
@@ -77,8 +74,21 @@
                                     </select>
                                 </div>
                             </div>
+                            <label for="model">หมายเลขตัวถัง :</label>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <input type="text" class="form-control" placeholder="หมายเลขตัวถัง" id="tank_number"
+                                        name="tank_number" required value="" autofocus list="tank" >
+                                    <datalist id="tank">
+                                        <?php foreach ($query1 as $tank) {
+                                        echo "<option value=\"".$tank['tank_number']."\">";
+                                    }
+                                    ?>
+                                    </datalist>
+                                </div>
+                            </div>
                             <button type="submit" id="submit" class="btn-submit btn-system btn-large"
-                                disabled>นำส่ง</button>
+                                disabled>เพิ่ม</button>
                         </form>
                         <!-- End Contact Form -->
 
@@ -93,7 +103,7 @@
 </section>
 
 <script type="text/javascript">
-var newTitle = "นำส่งถังแก๊สออกซิเจน | Oxygen Tank Inventory";
+var newTitle = "เบิกถังแก๊สออกซิเจน | Oxygen Tank Inventory";
 if (document.title != newTitle) {
     document.title = newTitle;
 }
@@ -122,14 +132,16 @@ $(document).ready(function() {
 
         var return_date = $("input[name='return_date']").val();
         var return_name = $("#return_name").children("option").filter(":selected").text();
+        var tank_number = $("input[name='tank_number']").val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>Dashboard/Returning_Action/<?php echo $_SESSION['id']; ?>",
+            url: "<?php echo base_url(); ?>Dashboard/Returning_Quick_Action",
             type: 'POST',
             dataType: "json",
             data: {
                 return_date: return_date,
-                return_name: return_name
+                return_name: return_name,
+                tank_number: tank_number
             },
             success: function(data) {
                 if ($.isEmptyObject(data.error)) {
@@ -137,6 +149,8 @@ $(document).ready(function() {
                     location.href = '<?php echo base_url(); ?>Dashboard';
                 } else {
                     $("#submit").attr("disabled", false);
+                    $("input[name='tank_number']").val('');
+                    $("input[name='tank_number']").focus();
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }

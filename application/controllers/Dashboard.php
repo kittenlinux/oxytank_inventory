@@ -61,15 +61,15 @@ class Dashboard extends Auth_Controller
             $query1 = $row->tank_number;
         }
 
-        $this->form_validation->set_rules('take_date', 'วันที่ทำรายการ', 'trim|required');
-        $this->form_validation->set_rules('take_name', 'ชื่อผู้เบิก', 'trim|required');
+        $this->form_validation->set_rules('return_date', 'วันที่ทำรายการ', 'trim|required');
+        $this->form_validation->set_rules('return_name', 'ชื่อผู้นำส่ง', 'trim|required');
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
             echo json_encode(['error'=>$errors]);
         } else {
             $data = array(
-                'return_date' => $_POST['take_date'],
-                'return_name' => $_POST['take_name'],
+                'return_date' => $_POST['return_date'],
+                'return_name' => $_POST['return_name'],
                 'status' => '1'
             );
             $this->db->where('id', $id);
@@ -78,6 +78,52 @@ class Dashboard extends Auth_Controller
             $_SESSION['result_message'] = 'เพิ่มข้อมูลการนำส่งของถังแก๊สออกซิเจน หมายเลขตัวถัง '.$query1.' แล้ว !';
             $_SESSION['result_message_type'] = 'success';
             $this->session->mark_as_flash('result_message');
+        }
+    }
+
+    public function Returning_Quick()
+    {
+        $this->render('dashboard/returning_quick_view');
+    }
+
+    public function Returning_Quick_Action()
+    {
+        $this->form_validation->set_rules('return_date', 'วันที่ทำรายการ', 'trim|required');
+        $this->form_validation->set_rules('return_name', 'ชื่อผู้นำส่ง', 'trim|required');
+        $this->form_validation->set_rules('tank_number', 'หมายเลขตัวถัง', 'trim|required');
+        if ($this->form_validation->run()===false) {
+            $errors = validation_errors();
+            echo json_encode(['error'=>$errors]);
+        } else {
+            $this->db->select(array('id', 'tank_number'));
+            $this->db->from('inventory');
+            $this->db->where('tank_number', $_POST['tank_number']);
+            $this->db->where('status', '0');
+            $this->db->order_by('id', "desc");
+            $this->db->limit(1);
+
+            $query = $this->db->get();
+            $count = $query->num_rows();
+            if ($count=='0') {
+                $errors = 'ถังแก๊สออกซิเจน หมายเลขตัวถัง '.$_POST['tank_number'].' ไม่อยู่ในสถานะการเบิกในปัจจุบัน';
+                echo json_encode(['error'=>$errors]);
+            } else {
+                foreach ($query->result() as $row) {
+                    $query0 = $row->id;
+                    $query1 = $row->tank_number;
+                }
+                $data = array(
+                    'return_date' => $_POST['return_date'],
+                    'return_name' => $_POST['return_name'],
+                    'status' => '1'
+                );
+                $this->db->where('id', $query0);
+                $this->db->update('inventory', $data);
+                echo json_encode(['success'=>'เพิ่มข้อมูลการนำส่งของถังแก๊สออกซิเจน หมายเลขตัวถัง '.$query1.' แล้ว !']);
+                $_SESSION['result_message'] = 'เพิ่มข้อมูลการนำส่งของถังแก๊สออกซิเจน หมายเลขตัวถัง '.$query1.' แล้ว !';
+                $_SESSION['result_message_type'] = 'success';
+                $this->session->mark_as_flash('result_message');
+            }
         }
     }
 

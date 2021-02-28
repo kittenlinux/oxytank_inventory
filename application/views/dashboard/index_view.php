@@ -105,6 +105,8 @@
                             <p style="text-align: right;">
                                 <button type="button" class="btn btn-success"
                                     onclick="location.href='<?php echo base_url();?>Dashboard/Take';">เบิกถังแก๊สออกซิเจน</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="location.href='<?php echo base_url();?>Dashboard/Returning_Quick';">นำส่งด้วยหมายเลขตัวถัง</button>
                             </p>
 
                             <table id="example" class="display" style="width:100%">
@@ -146,10 +148,10 @@
                                             <button type="button" class="btn btn-success"
                                                 onclick="location.href='<?php echo base_url(); ?>Dashboard/Returning/<?php echo $inventory['id']; ?>';">นำส่ง</button>
                                             <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_Take/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Edit_Take/<?php echo $inventory['id']; ?>';">แก้ไข</button>
                                             <?php } elseif ($inventory['status']=='1') { ?>
                                             <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_TakeReturn/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Edit_TakeReturn/<?php echo $inventory['id']; ?>';">แก้ไข</button>
                                             <?php } ?>
                                             <button type="button" class="btn btn-danger"
                                                 onclick="Data_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
