@@ -130,20 +130,20 @@ class Dashboard extends Auth_Controller
     public function Edit_Take($id)
     {
         $_SESSION['id']=$id;
-        $this->render('dashboard/data_edit_takeview');
+        $this->render('dashboard/edit_take_view');
     }
 
-    public function Edit_TakeAction($id)
+    public function Edit_Take_Action($id)
     {
     }
 
     public function Edit_TakeReturn($id)
     {
         $_SESSION['id']=$id;
-        $this->render('dashboard/data_edit_takereturnview');
+        $this->render('dashboard/edit_takereturn_view');
     }
 
-    public function Edit_TakeReturnAction($id)
+    public function Edit_TakeReturn_Action($id)
     {
     }
 

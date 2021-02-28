@@ -52,57 +52,57 @@
                                 <button type="button" class="btn btn-primary"
                                     onclick="location.href='<?php echo base_url();?>Manage/Tank_AddBulk';">เพิ่มถังแก๊สออกซิเจนแบบต่อเนื่อง</button>
                             </p>
-
-                            <table id="example" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>หมายเลขตัวถัง</th>
-                                        <th>สถานะ</th>
-                                        <th>การดำเนินการ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if ($count != 0) {
+                            <div class="table-responsive">
+                                <table id="example" class="display responsive nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>หมายเลขตัวถัง</th>
+                                            <th>สถานะ</th>
+                                            <th>การดำเนินการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if ($count != 0) {
     $cnt = 0;
 
     foreach ($query as $tank) {
         $cnt++; ?>
-                                    <tr>
-                                        <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
-                                        <td><?php echo $tank['tank_number'] ?></td>
-                                        <td><?php if ($tank['status']=='1') {
+                                        <tr>
+                                            <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
+                                            <td><?php echo $tank['tank_number'] ?></td>
+                                            <td><?php if ($tank['status']=='1') {
             echo "<span style='color:green;font-weight:bold'>เปิด</span>";
         } elseif ($tank['status']=='0') {
             echo "<span style='color:red;font-weight:bold'>ปิด</span>";
         } ?></td>
-                                        <td>
-                                            <?php if ($tank['status']=='1') {?><button type="button"
-                                                class="btn btn-danger"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">ปิด</button><?php } ?>
-                                            <?php if ($tank['status']=='0') {?><button type="button"
-                                                class="btn btn-success"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">เปิด</button><?php } ?>
-                                            <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $tank['id']; ?>';">แก้ไข</button>
-                                            <button type="button" class="btn btn-danger"
-                                                onclick="Tank_delconfirm(<?php echo $tank['id']; ?>, '<?php echo $tank['tank_number'] ?>')">ลบ</button>
-                                        </td>
-                                    </tr>
-                                    <?php
+                                            <td>
+                                                <?php if ($tank['status']=='1') {?><button type="button"
+                                                    class="btn btn-danger"
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">ปิด</button><?php } ?>
+                                                <?php if ($tank['status']=='0') {?><button type="button"
+                                                    class="btn btn-success"
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">เปิด</button><?php } ?>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $tank['id']; ?>';">แก้ไข</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="Tank_delconfirm(<?php echo $tank['id']; ?>, '<?php echo $tank['tank_number'] ?>')">ลบ</button>
+                                            </td>
+                                        </tr>
+                                        <?php
     }
 } ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>หมายเลขตัวถัง</th>
-                                        <th>สถานะ</th>
-                                        <th>การดำเนินการ</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>หมายเลขตัวถัง</th>
+                                            <th>สถานะ</th>
+                                            <th>การดำเนินการ</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                             <!-- Some Text -->
                         </div>
                     </div>

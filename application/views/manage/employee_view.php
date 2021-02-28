@@ -50,44 +50,44 @@
                                 <button type="button" class="btn btn-success"
                                     onclick="location.href='<?php echo base_url();?>Manage/Employee_Add';">เพิ่มชื่อผู้ทำการเบิก-จ่าย</button>
                             </p>
-
-                            <table id="example" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>ชื่อผู้ทำการเบิก-จ่าย</th>
-                                        <th>การดำเนินการ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if ($count != 0) {
+                            <div class="table-responsive">
+                                <table id="example" class="display responsive nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>ชื่อผู้ทำการเบิก-จ่าย</th>
+                                            <th>การดำเนินการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if ($count != 0) {
     $cnt = 0;
 
     foreach ($query as $employee) {
         $cnt++; ?>
-                                    <tr>
-                                        <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
-                                        <td><?php echo $employee['employee_name'] ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Manage/Employee_Edit/<?php echo $employee['id']; ?>';">แก้ไข</button>
-                                            <button type="button" class="btn btn-danger"
-                                                onclick="Employee_delconfirm(<?php echo $employee['id']; ?>, '<?php echo $employee['employee_name'] ?>')">ลบ</button>
-                                        </td>
-                                    </tr>
-                                    <?php
+                                        <tr>
+                                            <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
+                                            <td><?php echo $employee['employee_name'] ?></td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Employee_Edit/<?php echo $employee['id']; ?>';">แก้ไข</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="Employee_delconfirm(<?php echo $employee['id']; ?>, '<?php echo $employee['employee_name'] ?>')">ลบ</button>
+                                            </td>
+                                        </tr>
+                                        <?php
     }
 } ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>ชื่อผู้ทำการเบิก-จ่าย</th>
-                                        <th>การดำเนินการ</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>ชื่อผู้ทำการเบิก-จ่าย</th>
+                                            <th>การดำเนินการ</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                             <!-- Some Text -->
                         </div>
                     </div>

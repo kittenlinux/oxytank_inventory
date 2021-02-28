@@ -66,7 +66,7 @@
                                 <div class="controls">
                                     <select class="form-control" id="return_name" name="return_name"
                                         onchange="enable_submit()" onfocus="enable_submit()">
-                                        <option value="0" disabled selected>เลือกชื่อนำส่ง</option>
+                                        <option value="0" disabled selected>เลือกชื่อผู้นำส่ง</option>
                                         <?php foreach ($query2 as $employee) {
     echo "<option value=\"".$employee['employee_name']."\">".$employee['employee_name']."</option>";
 }

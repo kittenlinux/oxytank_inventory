@@ -108,81 +108,81 @@
                                 <button type="button" class="btn btn-primary"
                                     onclick="location.href='<?php echo base_url();?>Dashboard/Returning_Quick';">นำส่งด้วยหมายเลขตัวถัง</button>
                             </p>
-
-                            <table id="example" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>หมายเลขตัวถัง</th>
-                                        <th>วันที่เบิก</th>
-                                        <th>ชื่อผู้เบิก</th>
-                                        <th>วันที่นำส่งคืน</th>
-                                        <th>ชื่อผู้นำส่งคืน</th>
-                                        <th>สถานะ</th>
-                                        <th>การดำเนินการ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if ($count != 0) {
+                            <div class="table-responsive">
+                                <table id="example" class="display responsive nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>หมายเลขตัวถัง</th>
+                                            <th>วันที่เบิก</th>
+                                            <th>ชื่อผู้เบิก</th>
+                                            <th>วันที่นำส่งคืน</th>
+                                            <th>ชื่อผู้นำส่งคืน</th>
+                                            <th>สถานะ</th>
+                                            <th>การดำเนินการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if ($count != 0) {
     $cnt = 0;
 
     foreach ($query as $inventory) {
         $cnt++; ?>
-                                    <tr>
-                                        <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
-                                        <td><?php echo $inventory['tank_number'] ?></td>
-                                        <td><?php echo $inventory['take_date'] ?></td>
-                                        <td><?php echo $inventory['take_name'] ?></td>
-                                        <?php if ($inventory['status']=='0') { ?>
-                                        <td><?php echo "-" ?></td>
-                                        <td><?php echo "-" ?></td><?php } elseif ($inventory['status']=='1') { ?>
-                                        <td><?php echo $inventory['return_date'] ?></td>
-                                        <td><?php echo $inventory['return_name'] ?></td><?php } ?>
-                                        <td><?php if ($inventory['status']=='0') {
+                                        <tr>
+                                            <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
+                                            <td><?php echo $inventory['tank_number'] ?></td>
+                                            <td><?php echo $inventory['take_date'] ?></td>
+                                            <td><?php echo $inventory['take_name'] ?></td>
+                                            <?php if ($inventory['status']=='0') { ?>
+                                            <td><?php echo "-" ?></td>
+                                            <td><?php echo "-" ?></td><?php } elseif ($inventory['status']=='1') { ?>
+                                            <td><?php echo $inventory['return_date'] ?></td>
+                                            <td><?php echo $inventory['return_name'] ?></td><?php } ?>
+                                            <td><?php if ($inventory['status']=='0') {
             echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
         } elseif ($inventory['status']=='1') {
             echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
         } ?></td>
-                                        <td>
-                                            <?php if ($inventory['status']=='0') { ?>
-                                            <button type="button" class="btn btn-success"
-                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Returning/<?php echo $inventory['id']; ?>';">นำส่ง</button>
-                                            <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Edit_Take/<?php echo $inventory['id']; ?>';">แก้ไข</button>
-                                            <?php } elseif ($inventory['status']=='1') { ?>
-                                            <button type="button" class="btn btn-primary"
-                                                onclick="location.href='<?php echo base_url(); ?>Dashboard/Edit_TakeReturn/<?php echo $inventory['id']; ?>';">แก้ไข</button>
-                                            <?php } ?>
-                                            <button type="button" class="btn btn-danger"
-                                                onclick="Data_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
-                                        </td>
-                                    </tr>
-                                    <?php
+                                            <td>
+                                                <?php if ($inventory['status']=='0') { ?>
+                                                <button type="button" class="btn btn-success"
+                                                    onclick="location.href='<?php echo base_url(); ?>Dashboard/Returning/<?php echo $inventory['id']; ?>';">นำส่ง</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="location.href='<?php echo base_url(); ?>Dashboard/Edit_Take/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                                <?php } elseif ($inventory['status']=='1') { ?>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="location.href='<?php echo base_url(); ?>Dashboard/Edit_TakeReturn/<?php echo $inventory['id']; ?>';">แก้ไข</button>
+                                                <?php } ?>
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="Data_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
+                                            </td>
+                                        </tr>
+                                        <?php
     }
 } ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>หมายเลขตัวถัง</th>
-                                        <th>วันที่เบิก</th>
-                                        <th>ชื่อผู้เบิก</th>
-                                        <th>วันที่นำส่งคืน</th>
-                                        <th>ชื่อผู้นำส่งคืน</th>
-                                        <th>สถานะ</th>
-                                        <th>การดำเนินการ</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
-                            <!-- Some Text -->
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>หมายเลขตัวถัง</th>
+                                            <th>วันที่เบิก</th>
+                                            <th>ชื่อผู้เบิก</th>
+                                            <th>วันที่นำส่งคืน</th>
+                                            <th>ชื่อผู้นำส่งคืน</th>
+                                            <th>สถานะ</th>
+                                            <th>การดำเนินการ</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                </ div>
+                                <!-- Some Text -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- End content -->
         </div>
-        <!-- End content -->
-    </div>
 </section>
 
 <script>
