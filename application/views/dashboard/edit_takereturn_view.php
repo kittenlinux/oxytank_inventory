@@ -12,7 +12,7 @@
 
     $query2 = $this->db->get()->result_array();
 
-    $this->db->select(array('take_date', 'take_name', 'tank_number'));
+    $this->db->select(array('take_date', 'take_name', 'return_date', 'return_name', 'tank_number'));
     $this->db->from('inventory');
     $this->db->where('id', $_SESSION['id']);
 
@@ -21,6 +21,8 @@
         $query01 = $row->take_date;
         $query02 = $row->take_name;
         $query03 = $row->tank_number;
+        $query04 = $row->return_date;
+        $query05 = $row->return_name;
     }
 ?>
 <section id="dashboard">
@@ -87,6 +89,26 @@
                                     </datalist>
                                 </div>
                             </div>
+                            <label for="start_date">วันที่นำส่งคืน :</label>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <div class='input-group date' id='datetimepicker2'>
+                                        <input type='text' class="form-control" id="return_date" name="return_date" required
+                                            style="margin-bottom: auto;" value="<?php echo $query04; ?>" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="model">ชื่อผู้นำส่งคืน :</label>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <input type="text" class="form-control" placeholder="ชื่อผู้นำส่งคืน" id="return_name"
+                                        name="return_name" required value="<?php echo $query05; ?>" autofocus
+                                        list="employee" />
+                                </div>
+                            </div>
                             <label for="model">หมายเลขหัวถัง :</label>
                             <div class="form-group">
                                 <div class="controls">
@@ -129,6 +151,10 @@ $(function() {
         format: "YYYY-MM-DD",
         useCurrent: false
     });
+    $('#datetimepicker2').datetimepicker({
+        format: "YYYY-MM-DD",
+        useCurrent: false
+    });
 });
 
 $(document).ready(function() {
@@ -138,15 +164,19 @@ $(document).ready(function() {
 
         var take_date = $("input[name='take_date']").val();
         var take_name = $("input[name='take_name']").val();
+        var return_date = $("input[name='return_date']").val();
+        var return_name = $("input[name='return_name']").val();
         var tank_number = $("input[name='tank_number']").val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>Dashboard/Edit_Take_Action/<?php echo $_SESSION['id']; ?>",
+            url: "<?php echo base_url(); ?>Dashboard/Edit_TakeReturn_Action/<?php echo $_SESSION['id']; ?>",
             type: 'POST',
             dataType: "json",
             data: {
                 take_date: take_date,
                 take_name: take_name,
+                return_date: return_date,
+                return_name: return_name,
                 tank_number: tank_number
             },
             success: function(data) {
