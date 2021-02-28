@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <input type="text" class="form-control" placeholder="หมายเลขหัวถัง" id="tank_number"
-                                        name="tank_number" required value="<?php echo $query03; ?>" autofocus
+                                        name="tank_number" required value='<?php echo $query03; ?>' autofocus
                                         list="tank" />
                                     <datalist id="tank">
                                         <?php foreach ($query1 as $tank) {

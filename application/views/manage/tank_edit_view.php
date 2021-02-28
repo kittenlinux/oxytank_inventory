@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <input type="text" class="form-control" placeholder="หมายเลขหัวถัง" id="tank_number"
-                                        name="tank_number" required value="<?php echo $query1; ?> autofocus">
+                                        name="tank_number" required value='<?php echo $query1; ?>' autofocus">
                                 </div>
                             </div>
                             <button type="submit" id="submit"

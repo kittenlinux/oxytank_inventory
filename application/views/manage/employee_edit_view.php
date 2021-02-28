@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <input type="text" class="form-control" placeholder="ชื่อผู้ทำการเบิก-จ่าย"
-                                        id="employee_name" name="employee_name" required value="<?php echo $query1; ?> autofocus">
+                                        id="employee_name" name="employee_name" required value="<?php echo $query1; ?>" autofocus">
                                 </div>
                             </div>
                             <button type="submit" id="submit"
