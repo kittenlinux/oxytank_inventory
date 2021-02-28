@@ -83,6 +83,7 @@ if (document.title != newTitle) {
 $(document).ready(function() {
     $(".btn-submit").click(function(e) {
         e.preventDefault();
+        $("#submit").attr("disabled", true);
 
         var username = $("input[name='username']").val();
         var password = $("input[name='password']").val();
@@ -102,6 +103,7 @@ $(document).ready(function() {
                     $(".print-error-msg").css('display', 'none');
                     location.href = '<?php echo base_url(); ?>Dashboard';
                 } else {
+                    $("#submit").attr("disabled", false);
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }

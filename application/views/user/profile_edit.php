@@ -93,6 +93,7 @@ if (document.title != newTitle) {
 $(document).ready(function() {
     $(".btn-submit").click(function(e) {
         e.preventDefault();
+        $("#submit").attr("disabled", true);
 
         var first_name = $("input[name='first_name']").val();
         var last_name = $("input[name='last_name']").val();
@@ -110,6 +111,7 @@ $(document).ready(function() {
                     $(".print-error-msg").css('display', 'none');
                     location.href = '<?php echo base_url(); ?>User/Profile'
                 } else {
+                    $("#submit").attr("disabled", false);
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }

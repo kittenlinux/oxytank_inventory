@@ -69,6 +69,7 @@ if (document.title != newTitle) {
 $(document).ready(function() {
     $(".btn-submit").click(function(e) {
         e.preventDefault();
+        $("#submit").attr("disabled", true);
 
         var employee_name = $("input[name='employee_name']").val();
 
@@ -84,6 +85,8 @@ $(document).ready(function() {
                     $(".print-error-msg").css('display', 'none');
                     location.href = '<?php echo base_url(); ?>Manage/Employee';
                 } else {
+                    $("#submit").attr("disabled", false);
+                    $("input[name='employee_name']").focus();
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }

@@ -1,14 +1,5 @@
 <?php
     defined('BASEPATH') or exit('No direct script access allowed');
-
-    $this->db->select(array('employee_name'));
-    $this->db->from('employee');
-    $this->db->where('id', $_SESSION['id']);
-
-    $query = $this->db->get();
-    foreach ($query->result() as $row) {
-        $query1 = $row->employee_name;
-    }
 ?>
 <section id="dashboard">
     <!-- Start Page Banner -->
@@ -16,15 +7,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>แก้ไขข้อมูลชื่อผู้ทำการเบิก-จ่าย<br /><?php echo $query1; ?></h2>
-                    <p>แก้ไขข้อมูลชื่อผู้ทำการเบิก-จ่าย</p>
+                    <h2>เพิ่มถังแก๊สออกซิเจนแบบต่อเนื่อง</h2>
+                    <p>เพิ่มข้อมูลหมายเลขตัวถัง แบบหลายถังต่อเนื่อง</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
                         <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
                         <li><a href="<?php echo base_url(); ?>Manage">จัดการข้อมูล</a></li>
-                        <li><a href="<?php echo base_url(); ?>Manage/Employee">ชื่อผู้ทำการเบิก-จ่าย</a></li>
-                        <li>แก้ไขข้อมูลชื่อผู้ทำการเบิก-จ่าย</li>
+                        <li><a href="<?php echo base_url(); ?>Manage/Tank">ถังแก๊สออกซิเจน</a></li>
+                        <li>เพิ่มถังแก๊สออกซิเจนแบบต่อเนื่อง</li>
                     </ul>
                 </div>
             </div>
@@ -43,20 +34,22 @@
                 <div class="row">
                     <div class="col-md-7">
                         <!-- Classic Heading -->
-                        <h4 class="classic-title"><span>ข้อมูลชื่อผู้ทำการเบิก-จ่าย</span></h4>
+                        <h4 class="classic-title"><span>ข้อมูลถังแก๊สออกซิเจน</span></h4>
 
                         <!-- Start Contact Form -->
                         <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
-                            <label for="model">ชื่อผู้ทำการเบิก-จ่าย :</label>
+                            <div class="alert alert-success print-success-msg" style="display:none"></div>
+                            <label for="model">หมายเลขตัวถัง :</label>
                             <div class="form-group">
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="ชื่อผู้ทำการเบิก-จ่าย"
-                                        id="employee_name" name="employee_name" required value="<?php echo $query1; ?> autofocus">
+                                    <input type="text" class="form-control" placeholder="หมายเลขตัวถัง" id="tank_number"
+                                        name="tank_number" required value="" autofocus>
                                 </div>
                             </div>
-                            <button type="submit" id="submit"
-                                class="btn-submit btn-system btn-large">แก้ไขข้อมูล</button>
+                            <button type="submit" id="submit" class="btn-submit btn-system btn-large">เพิ่ม</button>
+                            <button type="button" class="btn btn-primary"
+                                onclick="location.href='<?php echo base_url();?>Manage/Tank';">กลับหน้าจัดการถังแก๊สออกซิเจน</button>
                         </form>
                         <!-- End Contact Form -->
 
@@ -71,7 +64,7 @@
 </section>
 
 <script type="text/javascript">
-var newTitle = "แก้ไขข้อมูลชื่อผู้ทำการเบิก-จ่าย | Oxygen Tank Inventory";
+var newTitle = "เพิ่มถังแก๊สออกซิเจน | Oxygen Tank Inventory";
 if (document.title != newTitle) {
     document.title = newTitle;
 }
@@ -81,22 +74,28 @@ $(document).ready(function() {
         e.preventDefault();
         $("#submit").attr("disabled", true);
 
-        var employee_name = $("input[name='employee_name']").val();
+        var tank_number = $("input[name='tank_number']").val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>Manage/Employee_Edit_Action/<?php echo $_SESSION['id']; ?>",
+            url: "<?php echo base_url(); ?>Manage/Tank_Add_Action",
             type: 'POST',
             dataType: "json",
             data: {
-                employee_name: employee_name,
+                tank_number: tank_number
             },
             success: function(data) {
                 if ($.isEmptyObject(data.error)) {
+                    $("#submit").attr("disabled", false);
+                    $("input[name='tank_number']").val('');
+                    $("input[name='tank_number']").focus();
                     $(".print-error-msg").css('display', 'none');
-                    location.href = '<?php echo base_url(); ?>Manage/Employee';
+                    $(".print-success-msg").css('display', 'block');
+                    $(".print-success-msg").html(data.success);
                 } else {
                     $("#submit").attr("disabled", false);
-                    $("input[name='employee_name']").focus();
+                    $("input[name='tank_number']").val('');
+                    $("input[name='tank_number']").focus();
+                    $(".print-success-msg").css('display', 'none');
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }

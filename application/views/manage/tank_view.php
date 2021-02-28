@@ -49,6 +49,8 @@
                             <p style="text-align: right;">
                                 <button type="button" class="btn btn-success"
                                     onclick="location.href='<?php echo base_url();?>Manage/Tank_Add';">เพิ่มถังแก๊สออกซิเจน</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="location.href='<?php echo base_url();?>Manage/Tank_AddBulk';">เพิ่มถังแก๊สออกซิเจนแบบต่อเนื่อง</button>
                             </p>
 
                             <table id="example" class="display" style="width:100%">

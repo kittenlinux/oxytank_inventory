@@ -94,6 +94,7 @@ if (document.title != newTitle) {
 $(document).ready(function() {
     $(".btn-submit").click(function(e) {
         e.preventDefault();
+        $("#submit").attr("disabled", true);
 
         var tank_number = $("input[name='tank_number']").val();
         var status = $("input[name='status']:checked").val();
@@ -111,6 +112,8 @@ $(document).ready(function() {
                     $(".print-error-msg").css('display', 'none');
                     location.href = '<?php echo base_url(); ?>Manage/Tank';
                 } else {
+                    $("#submit").attr("disabled", false);
+                    $("input[name='tank_number']").focus();
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }

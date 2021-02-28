@@ -26,6 +26,11 @@ class Manage extends Auth_Controller
         $this->render('manage/tank_add_view');
     }
 
+    public function Tank_AddBulk()
+    {
+        $this->render('manage/tank_addbulk_view');
+    }
+
     public function Tank_Add_Action()
     {
         $this->form_validation->set_rules('tank_number', 'หมายเลขตัวถัง', 'trim|required|is_unique[tank.tank_number]');
