@@ -46,7 +46,7 @@
                         <h4 class="classic-title"><span>ข้อมูลชื่อผู้ทำการเบิก-จ่าย</span></h4>
 
                         <!-- Start Contact Form -->
-                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form">
+                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form" autocomplete="off">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
                             <label for="model">ชื่อผู้ทำการเบิก-จ่าย :</label>
                             <div class="form-group">

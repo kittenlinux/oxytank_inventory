@@ -1,14 +1,5 @@
 <?php
   defined('BASEPATH') or exit('No direct script access allowed');
-
-//   $this->db->from('inventory');
-
-//   $count = $this->db->count_all_results();
-
-//   $this->db->select();
-//   $this->db->from('inventory');
-
-//   $query = $this->db->get()->result_array();
 ?>
 
 <section id="maps">
@@ -50,20 +41,6 @@
                         <form method="post" accept-charset="utf-8" role="form" class="contact-form"
                             action=<?php echo base_url()."Maps/View_Action/"?>>
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
-                            <!-- <div class="col-md-12">
-                                <label for="bike">รถจักรยานยนต์ :</label>
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <select class="form-control" id="bike" name="bike" onchange="enable_submit()" onfocus="enable_submit()">
-                                            <option value="0" disabled selected>เลือกรถจักรยานยนต์</option>
-                                            <?php foreach ($query as $bike) {
-    echo "<option value=\"".$bike['key']."\">".$bike['plate']."</option>";
-}
-                                    ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="col-md-4">
                                 <label for="start_date">วันและเวลาเริ่มต้น :</label>
                                 <div class="form-group">
@@ -132,7 +109,6 @@ $(document).ready(function() {
 });
 
 var todayDate = new Date().getDate();
-var todaySeconds = new Date().getSeconds();
 var start_date = new Date(new Date().setDate(todayDate - 1))
 $(function() {
     $('#datetimepicker_startdate').datetimepicker({

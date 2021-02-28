@@ -18,7 +18,7 @@ class Dashboard extends Auth_Controller
 
     public function Take_Add()
     {
-        $this->render('dashboard/takeadd_view');
+        $this->render('dashboard/take_add_view');
     }
 
     public function Take_Add_Action()
@@ -37,7 +37,7 @@ class Dashboard extends Auth_Controller
     public function Data_Edit_Take($id)
     {
         $_SESSION['id']=$id;
-        $this->render('dashboard/dataedit_takeview');
+        $this->render('dashboard/data_edit_takeview');
     }
 
     public function Data_Edit_TakeAction($id)
@@ -47,7 +47,7 @@ class Dashboard extends Auth_Controller
     public function Data_Edit_TakeReturn($id)
     {
         $_SESSION['id']=$id;
-        $this->render('dashboard/dataedit_takereturnview');
+        $this->render('dashboard/data_edit_takereturnview');
     }
 
     public function Data_Edit_TakeReturnAction($id)

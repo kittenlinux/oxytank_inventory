@@ -47,7 +47,7 @@
                         <h4 class="classic-title"><span>ข้อมูลถังแก๊สออกซิเจน</span></h4>
 
                         <!-- Start Contact Form -->
-                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form">
+                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form" autocomplete="off">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
                             <label for="color">สถานะ :</label>
                             <div class="form-group">

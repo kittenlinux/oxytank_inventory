@@ -193,33 +193,11 @@ $(document).ready(function() {
     $('#example').DataTable();
 });
 
-// function Bike_switchconfirm(bike_key, bike_plate) {
-//     Swal.fire({
-//         title: 'ยืนยันการเปลี่ยนสถานะ ?',
-//         text: "ยืนยันการเปลี่ยนสถานะรถจักรยานยนต์ หมายเลขทะเบียน " + bike_plate + " ?",
-//         icon: 'warning',
-//         showCancelButton: true,
-//         confirmButtonText: 'ยืนยัน',
-//         cancelButtonText: 'ยกเลิก',
-//         allowEnterKey: 'true'
-//     }).then(function(result) {
-//         if (result.value) {
-//             // Swal.fire(
-//             //     title: 'สำเร็จ!',
-//             //     text: 'ลบโทเค็นเรียบร้อยแล้ว.',
-//             //     icon: 'success'
-//             // )
-//             window.location.href = "<?php echo base_url().'Dashboard/Bike_Switch/'; ?>" + bike_key;
-//         }
-//     })
-// }
-
 $(document).ready(function() {
 
 });
 
 var todayDate = new Date().getDate();
-var todaySeconds = new Date().getSeconds();
 var start_date = new Date(new Date().setDate(todayDate - 1))
 $(function() {
     $('#datetimepicker_startdate').datetimepicker({
