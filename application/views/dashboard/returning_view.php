@@ -1,13 +1,15 @@
 <?php
   defined('BASEPATH') or exit('No direct script access allowed');
 
-  $this->db->select(array('tank_number'));
+  $this->db->select(array('tank_number', 'take_date', 'take_name'));
   $this->db->from('inventory');
   $this->db->where('id', $_SESSION['id']);
 
   $query = $this->db->get();
   foreach ($query->result() as $row) {
       $query1 = $row->tank_number;
+      $query3 = $row->take_date;
+      $query4 = $row->take_name;
   }
 
   $this->db->select();
@@ -21,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>นำส่งถังแก๊สออกซิเจน<br />หมายเลขตัวถัง <?php echo $query1; ?></h2>
+                    <h2>นำส่งถังแก๊สออกซิเจน<br />หมายเลขหัวถัง <?php echo $query1; ?></h2>
                     <p>ทำรายการนำส่งถังแก๊สออกซิเจน</p>
                 </div>
                 <div class="col-md-6">
@@ -52,7 +54,9 @@
                         <!-- Start Contact Form -->
                         <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form" autocomplete="off">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
-                            <label for="start_date">วันที่ทำรายการ :</label>
+                            <p>วันที่เบิก : <?php echo $query3; ?></p>
+                            <p>ชื่อผู้เบิก : <?php echo $query4; ?></p>
+                            <label for="start_date">วันที่นำส่งคืน :</label>
                             <div class="form-group">
                                 <div class="controls">
                                     <div class='input-group date' id='datetimepicker'>
@@ -64,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <label for="model">ชื่อผู้นำส่ง :</label>
+                            <label for="model">ชื่อผู้นำส่งคืน :</label>
                             <div class="form-group">
                                 <div class="controls">
                                     <select class="form-control" id="return_name" name="return_name"

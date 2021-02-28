@@ -106,14 +106,14 @@
                                 <button type="button" class="btn btn-success"
                                     onclick="location.href='<?php echo base_url();?>Dashboard/Take';">เบิกถังแก๊สออกซิเจน</button>
                                 <button type="button" class="btn btn-primary"
-                                    onclick="location.href='<?php echo base_url();?>Dashboard/Returning_Quick';">นำส่งด้วยหมายเลขตัวถัง</button>
+                                    onclick="location.href='<?php echo base_url();?>Dashboard/Returning_Quick';">นำส่งด้วยหมายเลขหัวถัง</button>
                             </p>
                             <div class="table-responsive">
                                 <table id="example" class="display responsive nowrap" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>หมายเลขตัวถัง</th>
+                                            <th>หมายเลขหัวถัง</th>
                                             <th>วันที่เบิก</th>
                                             <th>ชื่อผู้เบิก</th>
                                             <th>วันที่นำส่งคืน</th>
@@ -164,7 +164,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
-                                            <th>หมายเลขตัวถัง</th>
+                                            <th>หมายเลขหัวถัง</th>
                                             <th>วันที่เบิก</th>
                                             <th>ชื่อผู้เบิก</th>
                                             <th>วันที่นำส่งคืน</th>
@@ -198,7 +198,7 @@ $(document).ready(function() {
 function Data_delconfirm(id, tank_number) {
     Swal.fire({
         title: 'ยืนยันการลบข้อมูลการเบิก-จ่าย ?',
-        text: "ยืนยันการลบข้อมูลการเบิก-จ่ายของหมายเลขตัวถัง " + tank_number + " ?",
+        text: "ยืนยันการลบข้อมูลการเบิก-จ่ายของหมายเลขหัวถัง " + tank_number + " ?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',

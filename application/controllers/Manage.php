@@ -33,7 +33,7 @@ class Manage extends Auth_Controller
 
     public function Tank_Add_Action()
     {
-        $this->form_validation->set_rules('tank_number', 'หมายเลขตัวถัง', 'trim|required|is_unique[tank.tank_number]');
+        $this->form_validation->set_rules('tank_number', 'หมายเลขหัวถัง', 'trim|required|is_unique[tank.tank_number]');
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
             echo json_encode(['error'=>$errors]);
@@ -43,8 +43,8 @@ class Manage extends Auth_Controller
                 'status' => '1'
             );
             $this->db->insert('tank', $data);
-            echo json_encode(['success'=>'เพิ่มข้อมูลหมายเลขตัวถัง '.$_POST['tank_number'].' แล้ว !']);
-            $_SESSION['result_message'] = 'เพิ่มข้อมูลหมายเลขตัวถัง '.$_POST['tank_number'].' แล้ว !';
+            echo json_encode(['success'=>'เพิ่มข้อมูลหมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !']);
+            $_SESSION['result_message'] = 'เพิ่มข้อมูลหมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !';
             $_SESSION['result_message_type'] = 'success';
             $this->session->mark_as_flash('result_message');
         }
@@ -58,7 +58,7 @@ class Manage extends Auth_Controller
 
     public function Tank_Edit_Action($id)
     {
-        $this->form_validation->set_rules('tank_number', 'หมายเลขตัวถัง', 'trim|required');
+        $this->form_validation->set_rules('tank_number', 'หมายเลขหัวถัง', 'trim|required');
         $this->form_validation->set_rules('status', 'สถานะ', 'trim');
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
@@ -70,8 +70,8 @@ class Manage extends Auth_Controller
                 );
             $this->db->where('id', $id);
             $this->db->update('tank', $data);
-            echo json_encode(['success'=>'แก้ไขข้อมูลหมายเลขตัวถัง '.$_POST['tank_number'].' แล้ว !']);
-            $_SESSION['result_message'] = 'แก้ไขข้อมูลหมายเลขตัวถัง '.$_POST['tank_number'].' แล้ว !';
+            echo json_encode(['success'=>'แก้ไขข้อมูลหมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !']);
+            $_SESSION['result_message'] = 'แก้ไขข้อมูลหมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !';
             $_SESSION['result_message_type'] = 'success';
             $this->session->mark_as_flash('result_message');
         }
@@ -105,7 +105,7 @@ class Manage extends Auth_Controller
         $this->db->where('id', $query0);
         $this->db->update('tank', $data);
 
-        $_SESSION['result_message'] = $new_status_desc.'ถังแก๊สออกซิเจน หมายเลขตัวถัง '.$query1.' แล้ว !';
+        $_SESSION['result_message'] = $new_status_desc.'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$query1.' แล้ว !';
         $_SESSION['result_message_type'] = 'success';
         $this->session->mark_as_flash('result_message');
 
@@ -125,7 +125,7 @@ class Manage extends Auth_Controller
 
         $this->db->delete('tank', array(id => $id));
 
-        $_SESSION['result_message'] = 'ลบถังแก๊สออกซิเจน หมายเลขตัวถัง '.$query0.' แล้ว !';
+        $_SESSION['result_message'] = 'ลบถังแก๊สออกซิเจน หมายเลขหัวถัง '.$query0.' แล้ว !';
         $_SESSION['result_message_type'] = 'danger';
         $this->session->mark_as_flash('result_message');
 

@@ -1,16 +1,27 @@
 <?php
     defined('BASEPATH') or exit('No direct script access allowed');
 
-  $this->db->select();
-  $this->db->from('tank');
-  $this->db->where('status', '1');
+    $this->db->select();
+    $this->db->from('tank');
+    $this->db->where('status', '1');
 
-  $query1 = $this->db->get()->result_array();
+    $query1 = $this->db->get()->result_array();
 
-  $this->db->select();
-  $this->db->from('employee');
+    $this->db->select();
+    $this->db->from('employee');
 
-  $query2 = $this->db->get()->result_array();
+    $query2 = $this->db->get()->result_array();
+
+    $this->db->select(array('take_date', 'take_name', 'tank_number'));
+    $this->db->from('inventory');
+    $this->db->where('id', $_SESSION['id']);
+
+    $query3 = $this->db->get();
+    foreach ($query3->result() as $row) {
+        $query01 = $row->take_date;
+        $query02 = $row->take_name;
+        $query03 = $row->tank_number;
+    }
 ?>
 <section id="dashboard">
     <!-- Start Page Banner -->
@@ -18,8 +29,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>เบิกถังแก๊สออกซิเจน</h2>
-                    <p>ทำรายการเบิกถังแก๊สออกซิเจน</p>
+                    <h2>แก้ไขข้อมูลการเบิก-จ่ายถังแก๊สออกซิเจน<br />หมายเลขหัวถัง <?php echo $query03; ?></h2>
+                    <p>ทำการแก้ไขข้อมูลการเบิก-จ่ายถังแก๊สออกซิเจน</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
@@ -44,17 +55,18 @@
                 <div class="row">
                     <div class="col-md-7">
                         <!-- Classic Heading -->
-                        <h4 class="classic-title"><span>ข้อมูลการเบิก</span></h4>
+                        <h4 class="classic-title"><span>ข้อมูลการเบิก-จ่าย</span></h4>
 
                         <!-- Start Contact Form -->
-                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form" autocomplete="off">
+                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form"
+                            autocomplete="off">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
                             <label for="start_date">วันที่เบิก :</label>
                             <div class="form-group">
                                 <div class="controls">
                                     <div class='input-group date' id='datetimepicker'>
                                         <input type='text' class="form-control" id="take_date" name="take_date" required
-                                            style="margin-bottom: auto;" />
+                                            style="margin-bottom: auto;" value="<?php echo $query01; ?>" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -64,21 +76,23 @@
                             <label for="model">ชื่อผู้เบิก :</label>
                             <div class="form-group">
                                 <div class="controls">
-                                    <select class="form-control" id="take_name" name="take_name"
-                                        onchange="enable_submit()" onfocus="enable_submit()">
-                                        <option value="0" disabled selected>เลือกชื่อผู้เบิก</option>
+                                    <input type="text" class="form-control" placeholder="ชื่อผู้เบิก" id="take_name"
+                                        name="take_name" required value="<?php echo $query02; ?>" autofocus
+                                        list="employee" />
+                                    <datalist id="employee">
                                         <?php foreach ($query2 as $employee) {
-    echo "<option value=\"".$employee['employee_name']."\">".$employee['employee_name']."</option>";
+    echo "<option value=\"".$employee['employee_name']."\">";
 }
                                     ?>
-                                    </select>
+                                    </datalist>
                                 </div>
                             </div>
                             <label for="model">หมายเลขหัวถัง :</label>
                             <div class="form-group">
                                 <div class="controls">
                                     <input type="text" class="form-control" placeholder="หมายเลขหัวถัง" id="tank_number"
-                                        name="tank_number" required value="" autofocus list="tank" />
+                                        name="tank_number" required value="<?php echo $query03; ?>" autofocus
+                                        list="tank" />
                                     <datalist id="tank">
                                         <?php foreach ($query1 as $tank) {
                                         echo "<option value=\"".$tank['tank_number']."\">";
@@ -87,8 +101,8 @@
                                     </datalist>
                                 </div>
                             </div>
-                            <button type="submit" id="submit" class="btn-submit btn-system btn-large"
-                                disabled>เพิ่ม</button>
+                            <button type="submit" id="submit"
+                                class="btn-submit btn-system btn-large">แก้ไขข้อมูล</button>
                         </form>
                         <!-- End Contact Form -->
 
@@ -108,13 +122,6 @@ if (document.title != newTitle) {
     document.title = newTitle;
 }
 
-function enable_submit() {
-    var e = document.getElementById("take_name");
-    if (e.options[e.selectedIndex].value !== "0") {
-        $('#submit').removeAttr('disabled');
-    }
-}
-
 var todayDate = new Date().getDate();
 var start_date = new Date(new Date().setDate(todayDate - 1))
 $(function() {
@@ -131,11 +138,11 @@ $(document).ready(function() {
         $("#submit").attr("disabled", true);
 
         var take_date = $("input[name='take_date']").val();
-        var take_name = $("#take_name").children("option").filter(":selected").text();
+        var take_name = $("input[name='take_name']").val();
         var tank_number = $("input[name='tank_number']").val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>Dashboard/Take_Action",
+            url: "<?php echo base_url(); ?>Dashboard/Edit_Take_Action/<?php echo $_SESSION['id']; ?>",
             type: 'POST',
             dataType: "json",
             data: {
@@ -149,8 +156,6 @@ $(document).ready(function() {
                     location.href = '<?php echo base_url(); ?>Dashboard';
                 } else {
                     $("#submit").attr("disabled", false);
-                    $("input[name='tank_number']").val('');
-                    $("input[name='tank_number']").focus();
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }

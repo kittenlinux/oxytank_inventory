@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h2>แก้ไขข้อมูลถังแก๊สออกซิเจน<br />หมายเลข <?php echo $query1; ?></h2>
-                    <p>แก้ไขข้อมูลหมายเลขตัวถัง และสถานะถังแก๊สออกซิเจน</p>
+                    <p>แก้ไขข้อมูลหมายเลขหัวถัง และสถานะถังแก๊สออกซิเจน</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
@@ -63,10 +63,10 @@
                                     <label for="status-off">ปิด</label>
                                 </div>
                             </div>
-                            <label for="model">หมายเลขตัวถัง :</label>
+                            <label for="model">หมายเลขหัวถัง :</label>
                             <div class="form-group">
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="หมายเลขตัวถัง" id="tank_number"
+                                    <input type="text" class="form-control" placeholder="หมายเลขหัวถัง" id="tank_number"
                                         name="tank_number" required value="<?php echo $query1; ?> autofocus">
                                 </div>
                             </div>

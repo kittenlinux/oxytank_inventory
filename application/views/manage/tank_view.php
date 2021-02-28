@@ -57,7 +57,7 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>หมายเลขตัวถัง</th>
+                                            <th>หมายเลขหัวถัง</th>
                                             <th>สถานะ</th>
                                             <th>การดำเนินการ</th>
                                         </tr>
@@ -96,7 +96,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
-                                            <th>หมายเลขตัวถัง</th>
+                                            <th>หมายเลขหัวถัง</th>
                                             <th>สถานะ</th>
                                             <th>การดำเนินการ</th>
                                         </tr>
@@ -126,7 +126,7 @@ $(document).ready(function() {
 function Tank_delconfirm(id, tank_number) {
     Swal.fire({
         title: 'ยืนยันการลบถังแก๊สออกซิเจน ?',
-        text: "ยืนยันการลบถังแก๊สออกซิเจน หมายเลขตัวถัง " + tank_number + " ?",
+        text: "ยืนยันการลบถังแก๊สออกซิเจน หมายเลขหัวถัง " + tank_number + " ?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',

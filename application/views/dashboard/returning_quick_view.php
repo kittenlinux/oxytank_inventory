@@ -18,14 +18,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>นำส่งถังแก๊สออกซิเจนด้วยหมายเลขตัวถัง</h2>
-                    <p>ทำรายการนำส่งถังแก๊สออกซิเจน ด้วยการสแกนบาร์โค้ดหมายเลขตัวถัง</p>
+                    <h2>นำส่งถังแก๊สออกซิเจนด้วยหมายเลขหัวถัง</h2>
+                    <p>ทำรายการนำส่งถังแก๊สออกซิเจน ด้วยการสแกนบาร์โค้ดหมายเลขหัวถัง</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
                         <li><a href="<?php echo base_url(); ?>">หน้าหลัก</a></li>
                         <li><a href="<?php echo base_url(); ?>Dashboard">ข้อมูลการเบิก-จ่าย</a></li>
-                        <li>นำส่งถังแก๊สออกซิเจนด้วยหมายเลขตัวถัง</li>
+                        <li>นำส่งถังแก๊สออกซิเจนด้วยหมายเลขหัวถัง</li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         <!-- Start Contact Form -->
                         <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form" autocomplete="off">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
-                            <label for="start_date">วันที่ทำรายการ :</label>
+                            <label for="start_date">วันที่นำส่งคืน :</label>
                             <div class="form-group">
                                 <div class="controls">
                                     <div class='input-group date' id='datetimepicker'>
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <label for="model">ชื่อผู้นำส่ง :</label>
+                            <label for="model">ชื่อผู้นำส่งคืน :</label>
                             <div class="form-group">
                                 <div class="controls">
                                     <select class="form-control" id="return_name" name="return_name"
@@ -74,11 +74,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <label for="model">หมายเลขตัวถัง :</label>
+                            <label for="model">หมายเลขหัวถัง :</label>
                             <div class="form-group">
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="หมายเลขตัวถัง" id="tank_number"
-                                        name="tank_number" required value="" autofocus list="tank" >
+                                    <input type="text" class="form-control" placeholder="หมายเลขหัวถัง" id="tank_number"
+                                        name="tank_number" required value="" autofocus list="tank" />
                                     <datalist id="tank">
                                         <?php foreach ($query1 as $tank) {
                                         echo "<option value=\"".$tank['tank_number']."\">";

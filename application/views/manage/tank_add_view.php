@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h2>เพิ่มถังแก๊สออกซิเจน</h2>
-                    <p>เพิ่มข้อมูลหมายเลขตัวถัง</p>
+                    <p>เพิ่มข้อมูลหมายเลขหัวถัง</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="breadcrumbs">
@@ -39,10 +39,10 @@
                         <!-- Start Contact Form -->
                         <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form" autocomplete="off">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
-                            <label for="model">หมายเลขตัวถัง :</label>
+                            <label for="model">หมายเลขหัวถัง :</label>
                             <div class="form-group">
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="หมายเลขตัวถัง" id="tank_number"
+                                    <input type="text" class="form-control" placeholder="หมายเลขหัวถัง" id="tank_number"
                                         name="tank_number" required value="" autofocus>
                                 </div>
                             </div>
