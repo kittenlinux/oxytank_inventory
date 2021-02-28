@@ -208,4 +208,12 @@ class Dashboard extends Auth_Controller
 
         redirect('Dashboard');
     }
+
+    public function Remove_Multiple()
+    {
+        $ids = $this->input->post('ids');
+        $this->db->where_in('id', explode(",", $ids));
+        $this->db->delete('inventory');
+        echo json_encode(['success'=>"Item Deleted successfully."]);
+    }
 }

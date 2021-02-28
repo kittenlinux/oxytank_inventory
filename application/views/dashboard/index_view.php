@@ -103,6 +103,7 @@
                         <div class="col-md-12">
                             <h4 class="classic-title"><span>รายละเอียดรายการ</span></h4>
                             <p style="text-align: right;">
+                                <button class="btn btn-danger delete_all" data-url="/itemDelete">ลบหลายรายการ</button>
                                 <button type="button" class="btn btn-success"
                                     onclick="location.href='<?php echo base_url();?>Dashboard/Take';">เบิกถังแก๊สออกซิเจน</button>
                                 <button type="button" class="btn btn-primary"
@@ -112,6 +113,7 @@
                                 <table id="example" class="display responsive nowrap" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th><input type="checkbox" id="master"></th>
                                             <th>No.</th>
                                             <th>หมายเลขหัวถัง</th>
                                             <th>วันที่เบิก</th>
@@ -129,6 +131,8 @@
     foreach ($query as $inventory) {
         $cnt++; ?>
                                         <tr>
+                                            <td><input type="checkbox" class="sub_chk"
+                                                    data-id="<?php echo $inventory['id']; ?>" /></td>
                                             <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
                                             <td><?php echo $inventory['tank_number'] ?></td>
                                             <td><?php echo $inventory['take_date'] ?></td>
@@ -163,6 +167,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th></th>
                                             <th>No.</th>
                                             <th>หมายเลขหัวถัง</th>
                                             <th>วันที่เบิก</th>
@@ -193,6 +198,45 @@ if (document.title != newTitle) {
 
 $(document).ready(function() {
     $('#example').DataTable();
+    $('#master').on('click', function(e) {
+        if ($(this).is(':checked', true)) {
+            $(".sub_chk").prop('checked', true);
+        } else {
+            $(".sub_chk").prop('checked', false);
+        }
+    });
+    $('.delete_all').on('click', function(e) {
+        var allVals = [];
+        $(".sub_chk:checked").each(function() {
+            allVals.push($(this).attr('data-id'));
+        });
+        if (allVals.length <= 0) {
+            alert("โปรดเลือกข้อมูลแถวที่ต้องการลบ !");
+        } else {
+            var check = confirm("ยืนยันการลบข้อมูลแถวที่เลือก ?");
+            if (check == true) {
+                var join_selected_values = allVals.join(",");
+                $.ajax({
+                    url: "<?php echo base_url(); ?>Dashboard/Remove_Multiple",
+                    type: 'POST',
+                    data: 'ids=' + join_selected_values,
+                    success: function(data) {
+                        console.log(data);
+                        $(".sub_chk:checked").each(function() {
+                            $(this).parents("tr").remove();
+                        });
+                        alert("ลบข้อมูลแถวที่เลือกแล้ว !");
+                    },
+                    error: function(data) {
+                        alert(data.responseText);
+                    }
+                });
+                $.each(allVals, function(index, value) {
+                    $('table tr').filter("[data-row-id='" + value + "']").remove();
+                });
+            }
+        }
+    });
 });
 
 function Data_delconfirm(id, tank_number) {

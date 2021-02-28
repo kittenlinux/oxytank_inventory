@@ -132,6 +132,14 @@ class Manage extends Auth_Controller
         redirect('Manage/Tank');
     }
 
+    public function Tank_Remove_Multiple()
+    {
+        $ids = $this->input->post('ids');
+        $this->db->where_in('id', explode(",", $ids));
+        $this->db->delete('tank');
+        echo json_encode(['success'=>"Item Deleted successfully."]);
+    }
+
     public function Employee()
     {
         $this->render('manage/employee_view');
@@ -204,5 +212,13 @@ class Manage extends Auth_Controller
         $this->session->mark_as_flash('result_message');
 
         redirect('Manage/Employee');
+    }
+
+    public function Employee_Remove_Multiple()
+    {
+        $ids = $this->input->post('ids');
+        $this->db->where_in('id', explode(",", $ids));
+        $this->db->delete('employee');
+        echo json_encode(['success'=>"Item Deleted successfully."]);
     }
 }

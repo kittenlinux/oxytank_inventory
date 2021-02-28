@@ -47,6 +47,7 @@
                         <div class="col-md-12">
                             <h4 class="classic-title"><span>รายชื่อผู้ทำการเบิก-จ่าย</span></h4>
                             <p style="text-align: right;">
+                                <button class="btn btn-danger delete_all" data-url="/itemDelete">ลบหลายรายการ</button>
                                 <button type="button" class="btn btn-success"
                                     onclick="location.href='<?php echo base_url();?>Manage/Employee_Add';">เพิ่มชื่อผู้ทำการเบิก-จ่าย</button>
                             </p>
@@ -54,6 +55,7 @@
                                 <table id="example" class="display responsive nowrap" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th><input type="checkbox" id="master"></th>
                                             <th>No.</th>
                                             <th>ชื่อผู้ทำการเบิก-จ่าย</th>
                                             <th>การดำเนินการ</th>
@@ -66,6 +68,8 @@
     foreach ($query as $employee) {
         $cnt++; ?>
                                         <tr>
+                                            <td><input type="checkbox" class="sub_chk"
+                                                    data-id="<?php echo $employee['id']; ?>" /></td>
                                             <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
                                             <td><?php echo $employee['employee_name'] ?></td>
                                             <td>
@@ -81,6 +85,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th></th>
                                             <th>No.</th>
                                             <th>ชื่อผู้ทำการเบิก-จ่าย</th>
                                             <th>การดำเนินการ</th>
@@ -121,13 +126,51 @@ function Employee_delconfirm(id, employee_name) {
         allowEnterKey: 'false'
     }).then(function(result) {
         if (result.value) {
-            window.location.href = "<?php echo base_url().'Manage/Employee_remove/' ?>" + id;
+            window.location.href = "<?php echo base_url().'Manage/Employee_Remove/' ?>" + id;
         }
     })
 }
 
 $(document).ready(function() {
-
+    $('#master').on('click', function(e) {
+        if ($(this).is(':checked', true)) {
+            $(".sub_chk").prop('checked', true);
+        } else {
+            $(".sub_chk").prop('checked', false);
+        }
+    });
+    $('.delete_all').on('click', function(e) {
+        var allVals = [];
+        $(".sub_chk:checked").each(function() {
+            allVals.push($(this).attr('data-id'));
+        });
+        if (allVals.length <= 0) {
+            alert("โปรดเลือกข้อมูลแถวที่ต้องการลบ !");
+        } else {
+            var check = confirm("ยืนยันการลบข้อมูลแถวที่เลือก ?");
+            if (check == true) {
+                var join_selected_values = allVals.join(",");
+                $.ajax({
+                    url: "<?php echo base_url(); ?>Manage/Employee_Remove_Multiple",
+                    type: 'POST',
+                    data: 'ids=' + join_selected_values,
+                    success: function(data) {
+                        console.log(data);
+                        $(".sub_chk:checked").each(function() {
+                            $(this).parents("tr").remove();
+                        });
+                        alert("ลบข้อมูลแถวที่เลือกแล้ว !");
+                    },
+                    error: function(data) {
+                        alert(data.responseText);
+                    }
+                });
+                $.each(allVals, function(index, value) {
+                    $('table tr').filter("[data-row-id='" + value + "']").remove();
+                });
+            }
+        }
+    });
 });
 
 var todayDate = new Date().getDate();
