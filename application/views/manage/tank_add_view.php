@@ -85,6 +85,7 @@ $(document).ready(function() {
                     $(".print-error-msg").css('display', 'none');
                     location.href = '<?php echo base_url(); ?>Manage/Tank';
                 } else {
+                    $("input[name='tank_number']").val('');
                     $(".print-error-msg").css('display', 'block');
                     $(".print-error-msg").html(data.error);
                 }
