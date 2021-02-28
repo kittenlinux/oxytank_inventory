@@ -48,14 +48,13 @@
                     <div class="container">
 
                         <div class="col-md-12">
-
                             <!-- Classic Heading -->
                             <h4 class="classic-title"><span>ช่วงระยะเวลารายการ</span></h4>
                             <!-- Start Contact Form -->
                             <form method="post" accept-charset="utf-8" role="form" class="contact-form"
                                 action=<?php echo base_url()."Maps/View_Action/"?>>
                                 <div class="alert alert-danger print-error-msg" style="display:none"></div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label for="start_date">วันที่เริ่มต้น :</label>
                                     <div class="form-group">
                                         <div class="controls">
@@ -70,7 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label for="end_date">วันที่สิ้นสุด :</label>
                                     <div class="form-group">
                                         <div class="controls">
@@ -81,6 +80,18 @@
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="end_date">สถานะ :</label>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <select class="form-control" id="status" name="status"">
+                                            <option value=" all" selected>ทั้งหมด</option>
+                                                <option value="0">ยังไม่นำส่ง</option>
+                                                <option value="1">นำส่งแล้ว</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -133,15 +144,15 @@
             echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
         } ?></td>
                                         <td>
-                                        <?php if ($inventory['status']=='0') { ?>
+                                            <?php if ($inventory['status']=='0') { ?>
                                             <button type="button" class="btn btn-success"
                                                 onclick="location.href='<?php echo base_url(); ?>Dashboard/Returning/<?php echo $inventory['id']; ?>';">น่าส่ง</button>
                                             <button type="button" class="btn btn-primary"
                                                 onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_Take/<?php echo $inventory['id']; ?>';">แก้ไข</button>
-                                        <?php } elseif ($inventory['status']=='1') { ?>
+                                            <?php } elseif ($inventory['status']=='1') { ?>
                                             <button type="button" class="btn btn-primary"
                                                 onclick="location.href='<?php echo base_url(); ?>Dashboard/Data_Edit_TakeReturn/<?php echo $inventory['id']; ?>';">แก้ไข</button>
-                                        <?php } ?>
+                                            <?php } ?>
                                             <button type="button" class="btn btn-danger"
                                                 onclick="Tank_delconfirm(<?php echo $inventory['id']; ?>, '<?php echo $inventory['tank_number'] ?>')">ลบ</button>
                                         </td>

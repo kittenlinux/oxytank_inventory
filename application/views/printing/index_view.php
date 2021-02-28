@@ -42,7 +42,7 @@
             <div class="page-content">
                 <div class="row">
                     <?php echo isset($_SESSION['result_message']) ? "<div class=\"alert alert-".$_SESSION['result_message_type']."\">".$_SESSION['result_message']."</div>" : false; ?>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <!-- Classic Heading -->
                         <h4 class="classic-title"><span>ช่วงเวลาที่ต้องการพิมพ์ข้อมูล</span></h4>
 
@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="start_date">วันและเวลาเริ่มต้น :</label>
                                 <div class="form-group">
                                     <div class="controls">
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="end_date">วันและเวลาสิ้นสุด :</label>
                                 <div class="form-group">
                                     <div class="controls">
@@ -92,6 +92,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                    <label for="end_date">สถานะ :</label>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <select class="form-control" id="status" name="status"">
+                                            <option value=" all" selected>ทั้งหมด</option>
+                                                <option value="0">ยังไม่นำส่ง</option>
+                                                <option value="1">นำส่งแล้ว</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-md-12">
                                 <button type="submit" id="submit" class="btn btn-success">ยืนยัน</button>
                             </div>
