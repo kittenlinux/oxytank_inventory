@@ -13,8 +13,9 @@ class Dashboard extends Auth_Controller
     
     public function index()
     {
-        $_SESSION['pr_start_date']='all';
-        $_SESSION['pr_end_date']='all';
+        date_default_timezone_set("Asia/Bangkok");
+        $_SESSION['pr_start_date']=date('Y-m-d', strtotime("-30 days"));
+        $_SESSION['pr_end_date']=date('Y-m-d');
         $_SESSION['pr_status']='all';
 
         $this->render('dashboard/index_view');
