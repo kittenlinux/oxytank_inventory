@@ -85,6 +85,10 @@
                                 <button type="submit" id="submit" class="btn btn-success">ยืนยัน</button>
                                 <button type="button" class="btn btn-primary"
                                     onclick="window.open('<?php echo base_url();?>Printing/View/all/all/all/', '_blank');">ดูข้อมูลทั้งหมด</button>
+                                <button type="button" class="btn btn-danger"
+                                    onclick="window.open('<?php echo base_url();?>Printing/View/all/all/0/', '_blank');">ดูข้อมูลสถานะยังไม่นำส่งทั้งหมด</button>
+                                <button type="button" class="btn btn-success"
+                                    onclick="window.open('<?php echo base_url();?>Printing/View/all/all/1/', '_blank');">ดูข้อมูลสถานะนำส่งแล้วทั้งหมด</button>
                             </div>
                         </form>
                         <!-- End Contact Form -->
