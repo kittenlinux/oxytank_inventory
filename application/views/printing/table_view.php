@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set("Asia/Bangkok");
   $this->db->from('inventory');
 
   $count = $this->db->count_all_results();
@@ -84,6 +85,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </tr>
         </tfoot> -->
     </table>
+    <p style='text-align:right'>พิมพ์เมื่อวันที่ <?php echo date('Y-m-d'); ?> เวลา <?php echo date('H:i:s'); ?></p>
 </body>
 
 </html>
