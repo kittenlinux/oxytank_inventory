@@ -74,7 +74,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <select class="form-control" id="status" name="status"">
-                                            <option value=" all" selected>ทั้งหมด</option>
+                                            <option value="all" selected>ทั้งหมด</option>
                                             <option value="0">ยังไม่นำส่ง</option>
                                             <option value="1">นำส่งแล้ว</option>
                                         </select>
