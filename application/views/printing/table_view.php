@@ -1,13 +1,47 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
-date_default_timezone_set("Asia/Bangkok");
+  defined('BASEPATH') or exit('No direct script access allowed');
+  date_default_timezone_set("Asia/Bangkok");
   $this->db->from('inventory');
-
+  if ($_SESSION['pr_start_date']!='all') {
+      $this->db->where('take_date >= date("'.$_SESSION['pr_start_date'].'")');
+  }
+  if ($_SESSION['pr_end_date']!='all') {
+      $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'")');
+  }
+  if ($_SESSION['pr_start_date']!='all') {
+      $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'")');
+  }
+  if ($_SESSION['pr_end_date']!='all') {
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")');
+  }
+  if ($_SESSION['pr_status']=='0') {
+      $this->db->where('status', '0');
+  }
+  if ($_SESSION['pr_status']=='1') {
+      $this->db->where('status', '1');
+  }
   $count = $this->db->count_all_results();
 
   $this->db->select();
   $this->db->from('inventory');
-  $this->db->order_by('id', 'DESC');
+  if ($_SESSION['pr_start_date']!='all') {
+      $this->db->where('take_date >= date("'.$_SESSION['pr_start_date'].'")');
+  }
+if ($_SESSION['pr_end_date']!='all') {
+    $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'")');
+}
+if ($_SESSION['pr_start_date']!='all') {
+    $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'")');
+}
+if ($_SESSION['pr_end_date']!='all') {
+    $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")');
+}
+if ($_SESSION['pr_status']=='0') {
+    $this->db->where('status', '0');
+}
+if ($_SESSION['pr_status']=='1') {
+    $this->db->where('status', '1');
+}
 
   $query = $this->db->get()->result_array();
 ?>
@@ -35,6 +69,13 @@ date_default_timezone_set("Asia/Bangkok");
 
 <body>
     <p style='font-weight:bold;text-align:center'>แบบบันทึกการเบิกจ่ายถังแก๊สออกซิเจน</p>
+    <p style='font-weight:bold;text-align:center'>
+        <?php if ($_SESSION['pr_start_date']!='all') {
+    echo "ตั้งแต่วันที่ ".$_SESSION['pr_start_date'];
+}
+  if ($_SESSION['pr_end_date']!='all') {
+      echo " ถึงวันที่ ".$_SESSION['pr_end_date'];
+  }?></p>
     <table id="table-print" class="display responsive nowrap" style="width:100%">
         <thead>
             <tr>
@@ -49,10 +90,10 @@ date_default_timezone_set("Asia/Bangkok");
         </thead>
         <tbody>
             <?php if ($count != 0) {
-    $cnt = 0;
+      $cnt = 0;
 
-    foreach ($query as $inventory) {
-        $cnt++; ?>
+      foreach ($query as $inventory) {
+          $cnt++; ?>
             <tr>
                 <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
                 <td><?php echo $inventory['tank_number'] ?></td>
@@ -64,14 +105,14 @@ date_default_timezone_set("Asia/Bangkok");
                 <td><?php echo $inventory['return_date'] ?></td>
                 <td><?php echo $inventory['return_name'] ?></td><?php } ?>
                 <td><?php if ($inventory['status']=='0') {
-            echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
-        } elseif ($inventory['status']=='1') {
-            echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
-        } ?></td>
+              echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
+          } elseif ($inventory['status']=='1') {
+              echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
+          } ?></td>
             </tr>
             <?php
-    }
-} ?>
+      }
+  } ?>
         </tbody>
         <!-- <tfoot>
             <tr>

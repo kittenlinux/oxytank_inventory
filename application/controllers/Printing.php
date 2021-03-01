@@ -15,7 +15,7 @@ class Printing extends Auth_Controller
         $this->render('printing/index_view');
     }
 
-    public function View($start_date, $end_date, $status)
+    public function View($start_date='all', $end_date='all', $status='all')
     {
         $_SESSION['pr_start_date']=$start_date;
         $_SESSION['pr_end_date']=$end_date;
@@ -24,12 +24,12 @@ class Printing extends Auth_Controller
         $this->render('printing/table_view', 'plain');
     }
 
-    // public function View_Action()
-    // {
-    //     if (isset($_POST['bike'])&&isset($_POST['start_date'])&&isset($_POST['end_date'])) {
-    //         redirect('Maps/View/'.$_POST['bike'].'/'.strtotime($_POST['start_date']).'/'.strtotime($_POST['end_date']).'/');
-    //     } else {
-    //         redirect('Maps');
-    //     }
-    // }
+    public function View_Action()
+    {
+        if (isset($_POST['start_date'])&&isset($_POST['end_date'])&&isset($_POST['status'])) {
+            redirect('Printing/View/'.$_POST['start_date'].'/'.$_POST['end_date'].'/'.$_POST['status'].'/');
+        } else {
+            redirect('Printing');
+        }
+    }
 }

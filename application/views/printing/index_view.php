@@ -39,7 +39,7 @@
 
                         <!-- Start Contact Form -->
                         <form method="post" accept-charset="utf-8" role="form" class="contact-form"
-                            action="<?php echo base_url()."Printing/View/1/1/1"?>" target="_blank">
+                            action="<?php echo base_url()."Printing/View_Action"?>" target="_blank">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
                             <div class="col-md-4">
                                 <label for="start_date">วันและเวลาเริ่มต้น :</label>
@@ -70,19 +70,21 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                    <label for="end_date">สถานะ :</label>
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <select class="form-control" id="status" name="status"">
+                                <label for="end_date">สถานะ :</label>
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <select class="form-control" id="status" name="status"">
                                             <option value=" all" selected>ทั้งหมด</option>
-                                                <option value="0">ยังไม่นำส่ง</option>
-                                                <option value="1">นำส่งแล้ว</option>
-                                            </select>
-                                        </div>
+                                            <option value="0">ยังไม่นำส่ง</option>
+                                            <option value="1">นำส่งแล้ว</option>
+                                        </select>
                                     </div>
                                 </div>
+                            </div>
                             <div class="col-md-12">
                                 <button type="submit" id="submit" class="btn btn-success">ยืนยัน</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="window.open('<?php echo base_url();?>Printing/View/all/all/all/', '_blank');">ดูข้อมูลทั้งหมด</button>
                             </div>
                         </form>
                         <!-- End Contact Form -->
