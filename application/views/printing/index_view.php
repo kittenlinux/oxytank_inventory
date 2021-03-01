@@ -39,7 +39,7 @@
 
                         <!-- Start Contact Form -->
                         <form method="post" accept-charset="utf-8" role="form" class="contact-form"
-                            action=<?php echo base_url()."Printing/View/1/1/1"?>>
+                            action="<?php echo base_url()."Printing/View/1/1/1"?>" target="_blank">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
                             <div class="col-md-4">
                                 <label for="start_date">วันและเวลาเริ่มต้น :</label>
