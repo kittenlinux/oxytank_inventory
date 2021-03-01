@@ -2,6 +2,13 @@
   defined('BASEPATH') or exit('No direct script access allowed');
   date_default_timezone_set("Asia/Bangkok");
   $this->db->from('inventory');
+  if ($_SESSION['pr_status']!='all') {
+      if ($_SESSION['pr_status']=='0') {
+          $this->db->where('status < 1');
+      } elseif ($_SESSION['pr_status']=='1') {
+          $this->db->where('status', '1');
+      }
+  }
   if ($_SESSION['pr_start_date']!='all') {
       $this->db->where('take_date >= date("'.$_SESSION['pr_start_date'].'")');
   }
@@ -14,16 +21,18 @@
   if ($_SESSION['pr_end_date']!='all') {
       $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")');
   }
-  if ($_SESSION['pr_status']=='0') {
-      $this->db->where('status', '0');
-  }
-  if ($_SESSION['pr_status']=='1') {
-      $this->db->where('status', '1');
-  }
+  
   $count = $this->db->count_all_results();
 
   $this->db->select();
   $this->db->from('inventory');
+  if ($_SESSION['pr_status']!='all') {
+      if ($_SESSION['pr_status']=='0') {
+          $this->db->where('status < 1');
+      } elseif ($_SESSION['pr_status']=='1') {
+          $this->db->where('status', '1');
+      }
+  }
   if ($_SESSION['pr_start_date']!='all') {
       $this->db->where('take_date >= date("'.$_SESSION['pr_start_date'].'")');
   }
@@ -36,13 +45,6 @@ if ($_SESSION['pr_start_date']!='all') {
 if ($_SESSION['pr_end_date']!='all') {
     $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")');
 }
-if ($_SESSION['pr_status']=='0') {
-    $this->db->where('status', '0');
-}
-if ($_SESSION['pr_status']=='1') {
-    $this->db->where('status', '1');
-}
-
   $query = $this->db->get()->result_array();
 ?>
 <!DOCTYPE html>
@@ -75,6 +77,12 @@ if ($_SESSION['pr_status']=='1') {
 }
   if ($_SESSION['pr_end_date']!='all') {
       echo " ถึงวันที่ ".$_SESSION['pr_end_date'];
+  }
+    if ($_SESSION['pr_status']=='0') {
+        echo " เฉพาะสถานะ ยังไม่นำส่ง";
+    }
+  if ($_SESSION['pr_status']=='1') {
+      echo " เฉพาะสถานะ นำส่งแล้ว";
   }?></p>
     <table id="table-print" class="display responsive nowrap" style="width:100%">
         <thead>
