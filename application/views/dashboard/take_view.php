@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <button type="submit" id="submit" class="btn-submit btn-system btn-large"
-                                disabled>เพิ่ม</button>
+                                disabled>เบิก</button>
                         </form>
                         <!-- End Contact Form -->
 
