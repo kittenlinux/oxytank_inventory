@@ -11,9 +11,14 @@ class Dashboard extends Auth_Controller
         $this->load->helper(array('form', 'url', 'file'));
     }
     
-    public function index()
+    public function index($start_date="1",$end_date="1",$status='all')
     {
         $this->render('dashboard/index_view');
+    }
+
+    public function View_Action()
+    {
+
     }
 
     public function Take()

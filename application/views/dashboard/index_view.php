@@ -1,8 +1,6 @@
 <?php
   defined('BASEPATH') or exit('No direct script access allowed');
-
-  $user = $this->ion_auth->user()->row();
-
+  
   $this->db->from('inventory');
 
   $count = $this->db->count_all_results();
@@ -51,7 +49,7 @@
                             <h4 class="classic-title"><span>ช่วงระยะเวลารายการ</span></h4>
                             <!-- Start Contact Form -->
                             <form method="post" accept-charset="utf-8" role="form" class="contact-form"
-                                action=<?php echo base_url()."Maps/View_Action/"?>>
+                                action=<?php echo base_url()."Dashboard/View_Action/"?>>
                                 <div class="alert alert-danger print-error-msg" style="display:none"></div>
                                 <div class="col-md-4">
                                     <label for="start_date">วันที่เริ่มต้น :</label>

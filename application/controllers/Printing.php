@@ -15,6 +15,15 @@ class Printing extends Auth_Controller
         $this->render('printing/index_view');
     }
 
+    public function View($start_date, $end_date, $status)
+    {
+        $_SESSION['pr_start_date']=$start_date;
+        $_SESSION['pr_end_date']=$end_date;
+        $_SESSION['pr_status']=$status;
+                
+        $this->render('printing/table_view', 'plain');
+    }
+
     // public function View($bike, $start_date, $end_date)
     // {
     //     $user = $this->ion_auth->user()->row();
