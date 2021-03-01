@@ -9,7 +9,6 @@
           $this->db->where('status', '1');
       }
   }
-  
   if ($_SESSION['pr_start_date']!='all'&&$_SESSION['pr_end_date']!='all') {
       $this->db->where('((take_date >= date("'.$_SESSION['pr_start_date'].'")');
       $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'"))');
@@ -23,7 +22,7 @@
       $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'"))');
   }
   $count = $this->db->count_all_results();
-
+  
   $this->db->select();
   $this->db->from('inventory');
   if ($_SESSION['pr_status']!='all') {

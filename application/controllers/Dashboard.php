@@ -11,14 +11,31 @@ class Dashboard extends Auth_Controller
         $this->load->helper(array('form', 'url', 'file'));
     }
     
-    public function index($start_date="1",$end_date="1",$status='all')
+    public function index()
     {
+        $_SESSION['pr_start_date']='all';
+        $_SESSION['pr_end_date']='all';
+        $_SESSION['pr_status']='all';
+
+        $this->render('dashboard/index_view');
+    }
+
+    public function View($start_date='all', $end_date='all', $status='all')
+    {
+        $_SESSION['pr_start_date']=$start_date;
+        $_SESSION['pr_end_date']=$end_date;
+        $_SESSION['pr_status']=$status;
+        
         $this->render('dashboard/index_view');
     }
 
     public function View_Action()
     {
-
+        if (isset($_POST['start_date'])&&isset($_POST['end_date'])&&isset($_POST['status'])) {
+            redirect('Dashboard/View/'.$_POST['start_date'].'/'.$_POST['end_date'].'/'.$_POST['status'].'/');
+        } else {
+            redirect('Dashboard');
+        }
     }
 
     public function Take()

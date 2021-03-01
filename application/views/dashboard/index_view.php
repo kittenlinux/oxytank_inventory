@@ -2,13 +2,50 @@
   defined('BASEPATH') or exit('No direct script access allowed');
   
   $this->db->from('inventory');
-
+  if ($_SESSION['pr_status']!='all') {
+      if ($_SESSION['pr_status']=='0') {
+          $this->db->where('status', '0');
+      } elseif ($_SESSION['pr_status']=='1') {
+          $this->db->where('status', '1');
+      }
+  }
+  if ($_SESSION['pr_start_date']!='all'&&$_SESSION['pr_end_date']!='all') {
+      $this->db->where('((take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'"))');
+      $this->db->or_where('(return_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")))');
+  } elseif ($_SESSION['pr_start_date']!='all') {
+      $this->db->where('(take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'"))');
+  } elseif ($_SESSION['pr_end_date']!='all') {
+      $this->db->where('(take_date <= date("'.$_SESSION['pr_end_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'"))');
+  }
+  $this->db->order_by('id', 'DESC');
   $count = $this->db->count_all_results();
-
+  
   $this->db->select();
   $this->db->from('inventory');
+  if ($_SESSION['pr_status']!='all') {
+      if ($_SESSION['pr_status']=='0') {
+          $this->db->where('status', '0');
+      } elseif ($_SESSION['pr_status']=='1') {
+          $this->db->where('status', '1');
+      }
+  }
+  if ($_SESSION['pr_start_date']!='all'&&$_SESSION['pr_end_date']!='all') {
+      $this->db->where('((take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'"))');
+      $this->db->or_where('(return_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")))');
+  } elseif ($_SESSION['pr_start_date']!='all') {
+      $this->db->where('(take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'"))');
+  } elseif ($_SESSION['pr_end_date']!='all') {
+      $this->db->where('(take_date <= date("'.$_SESSION['pr_end_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'"))');
+  }
   $this->db->order_by('id', 'DESC');
-
   $query = $this->db->get()->result_array();
 ?>
 
@@ -57,8 +94,9 @@
                                         <div class="controls">
                                             <div class='input-group date' id='datetimepicker_startdate'>
                                                 <input type='text' class="form-control" id="start_date"
-                                                    name="start_date" required onchange="enable_submit()"
-                                                    onfocus="enable_submit()" />
+                                                    name="start_date" required <?php if ($_SESSION['pr_start_date']!='all') {
+    echo "value='".$_SESSION['pr_start_date']."'";
+}?> />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -72,7 +110,9 @@
                                         <div class="controls">
                                             <div class='input-group date' id='datetimepicker_enddate'>
                                                 <input type='text' class="form-control" id="end_date" name="end_date"
-                                                    required onchange="enable_submit()" onfocus="enable_submit()" />
+                                                    required <?php if ($_SESSION['pr_end_date']!='all') {
+    echo "value='".$_SESSION['pr_end_date']."'";
+}?> />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -85,9 +125,15 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <select class="form-control" id="status" name="status"">
-                                            <option value=" all" selected>ทั้งหมด</option>
-                                                <option value="0">ยังไม่นำส่ง</option>
-                                                <option value="1">นำส่งแล้ว</option>
+                                            <option value=" all" <?php if ($_SESSION['pr_status']=='all') {
+    echo "selected";
+}?>>ทั้งหมด</option>
+                                                <option value="0" <?php if ($_SESSION['pr_status']=='0') {
+    echo "selected";
+}?>>ยังไม่นำส่ง</option>
+                                                <option value="1" <?php if ($_SESSION['pr_status']=='1') {
+    echo "selected";
+}?>>นำส่งแล้ว</option>
                                             </select>
                                         </div>
                                     </div>
