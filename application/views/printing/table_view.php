@@ -4,47 +4,47 @@
   $this->db->from('inventory');
   if ($_SESSION['pr_status']!='all') {
       if ($_SESSION['pr_status']=='0') {
-          $this->db->where('status < 1');
+          $this->db->where('status', '0');
       } elseif ($_SESSION['pr_status']=='1') {
           $this->db->where('status', '1');
       }
   }
-  if ($_SESSION['pr_start_date']!='all') {
-      $this->db->where('take_date >= date("'.$_SESSION['pr_start_date'].'")');
-  }
-  if ($_SESSION['pr_end_date']!='all') {
-      $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'")');
-  }
-  if ($_SESSION['pr_start_date']!='all') {
-      $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'")');
-  }
-  if ($_SESSION['pr_end_date']!='all') {
-      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")');
-  }
   
+  if ($_SESSION['pr_start_date']!='all'&&$_SESSION['pr_end_date']!='all') {
+      $this->db->where('((take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'"))');
+      $this->db->or_where('(return_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")))');
+  } elseif ($_SESSION['pr_start_date']!='all') {
+      $this->db->where('(take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'"))');
+  } elseif ($_SESSION['pr_end_date']!='all') {
+      $this->db->where('(take_date <= date("'.$_SESSION['pr_end_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'"))');
+  }
   $count = $this->db->count_all_results();
 
   $this->db->select();
   $this->db->from('inventory');
   if ($_SESSION['pr_status']!='all') {
       if ($_SESSION['pr_status']=='0') {
-          $this->db->where('status < 1');
+          $this->db->where('status', '0');
       } elseif ($_SESSION['pr_status']=='1') {
           $this->db->where('status', '1');
       }
   }
-  if ($_SESSION['pr_start_date']!='all') {
-      $this->db->where('take_date >= date("'.$_SESSION['pr_start_date'].'")');
+  if ($_SESSION['pr_start_date']!='all'&&$_SESSION['pr_end_date']!='all') {
+      $this->db->where('((take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'"))');
+      $this->db->or_where('(return_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")))');
+  } elseif ($_SESSION['pr_start_date']!='all') {
+      $this->db->where('(take_date >= date("'.$_SESSION['pr_start_date'].'")');
+      $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'"))');
+  } elseif ($_SESSION['pr_end_date']!='all') {
+      $this->db->where('(take_date <= date("'.$_SESSION['pr_end_date'].'")');
+      $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'"))');
   }
-if ($_SESSION['pr_end_date']!='all') {
-    $this->db->where('take_date <= date("'.$_SESSION['pr_end_date'].'")');
-}
-if ($_SESSION['pr_start_date']!='all') {
-    $this->db->or_where('return_date >= date("'.$_SESSION['pr_start_date'].'")');
-}
-if ($_SESSION['pr_end_date']!='all') {
-    $this->db->where('return_date <= date("'.$_SESSION['pr_end_date'].'")');
-}
   $query = $this->db->get()->result_array();
 ?>
 <!DOCTYPE html>
