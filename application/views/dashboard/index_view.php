@@ -140,6 +140,8 @@
                                 </div>
                                 <div class="col-md-12">
                                     <button type="submit" id="submit" class="btn btn-success">ยืนยัน</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="location.href='<?php echo base_url();?>Dashboard/View/all/all/all/';">ดูข้อมูลทั้งหมด</button>
                                 </div>
                             </form>
                         </div>
