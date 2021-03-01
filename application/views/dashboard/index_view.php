@@ -55,7 +55,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>ข้อมูลการเบิก-จ่าย</h2>
+                    <h2>ข้อมูลการเบิก-จ่าย<?php if ($_SESSION['pr_start_date']=='all'&&$_SESSION['pr_end_date']=='all'&&$_SESSION['pr_status']=='all') {
+    echo "ทั้งหมด";
+}?><?php if ($_SESSION['pr_start_date']!='all') {
+    echo "ตั้งแต่วันที่ ".$_SESSION['pr_start_date'];
+}
+  if ($_SESSION['pr_end_date']!='all') {
+      echo " ถึงวันที่ ".$_SESSION['pr_end_date'];
+  }
+    if ($_SESSION['pr_status']=='0') {
+        echo " เฉพาะสถานะ ยังไม่นำส่ง";
+    }
+  if ($_SESSION['pr_status']=='1') {
+      echo " เฉพาะสถานะ นำส่งแล้ว";
+  }?></h2>
                     <p>จัดการรายละเอียดการเบิก-จ่ายถังแก๊สออกซิเจน</p>
                 </div>
                 <div class="col-md-6">
@@ -95,8 +108,8 @@
                                             <div class='input-group date' id='datetimepicker_startdate'>
                                                 <input type='text' class="form-control" id="start_date"
                                                     name="start_date" required <?php if ($_SESSION['pr_start_date']!='all') {
-    echo "value='".$_SESSION['pr_start_date']."'";
-}?> />
+      echo "value='".$_SESSION['pr_start_date']."'";
+  }?> />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -111,8 +124,8 @@
                                             <div class='input-group date' id='datetimepicker_enddate'>
                                                 <input type='text' class="form-control" id="end_date" name="end_date"
                                                     required <?php if ($_SESSION['pr_end_date']!='all') {
-    echo "value='".$_SESSION['pr_end_date']."'";
-}?> />
+      echo "value='".$_SESSION['pr_end_date']."'";
+  }?> />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -126,14 +139,14 @@
                                         <div class="controls">
                                             <select class="form-control" id="status" name="status"">
                                             <option value=" all" <?php if ($_SESSION['pr_status']=='all') {
-    echo "selected";
-}?>>ทั้งหมด</option>
+      echo "selected";
+  }?>>ทั้งหมด</option>
                                                 <option value="0" <?php if ($_SESSION['pr_status']=='0') {
-    echo "selected";
-}?>>ยังไม่นำส่ง</option>
+      echo "selected";
+  }?>>ยังไม่นำส่ง</option>
                                                 <option value="1" <?php if ($_SESSION['pr_status']=='1') {
-    echo "selected";
-}?>>นำส่งแล้ว</option>
+      echo "selected";
+  }?>>นำส่งแล้ว</option>
                                             </select>
                                         </div>
                                     </div>
@@ -172,10 +185,10 @@
                                     </thead>
                                     <tbody>
                                         <?php if ($count != 0) {
-    $cnt = 0;
+      $cnt = 0;
 
-    foreach ($query as $inventory) {
-        $cnt++; ?>
+      foreach ($query as $inventory) {
+          $cnt++; ?>
                                         <tr>
                                             <td><input type="checkbox" class="sub_chk"
                                                     data-id="<?php echo $inventory['id']; ?>" /></td>
@@ -189,10 +202,10 @@
                                             <td><?php echo $inventory['return_date'] ?></td>
                                             <td><?php echo $inventory['return_name'] ?></td><?php } ?>
                                             <td><?php if ($inventory['status']=='0') {
-            echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
-        } elseif ($inventory['status']=='1') {
-            echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
-        } ?></td>
+              echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
+          } elseif ($inventory['status']=='1') {
+              echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
+          } ?></td>
                                             <td>
                                                 <?php if ($inventory['status']=='0') { ?>
                                                 <button type="button" class="btn btn-success"
@@ -208,8 +221,8 @@
                                             </td>
                                         </tr>
                                         <?php
-    }
-} ?>
+      }
+  } ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
