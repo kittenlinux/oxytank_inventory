@@ -64,14 +64,14 @@
       echo " ถึงวันที่ ".$_SESSION['pr_end_date'];
   }
   if ($_SESSION['pr_start_date']=='all'&&$_SESSION['pr_end_date']=='all'&&$_SESSION['pr_status']=='0') {
-      echo " เฉพาะสถานะ ยังไม่นำส่ง ทั้งหมด";
+      echo " เฉพาะสถานะ อยู่ระหว่างการใช้งาน ทั้งหมด";
   } elseif ($_SESSION['pr_status']=='0') {
-      echo " เฉพาะสถานะ ยังไม่นำส่ง";
+      echo " เฉพาะสถานะ อยู่ระหว่างการใช้งาน";
   }
   if ($_SESSION['pr_start_date']=='all'&&$_SESSION['pr_end_date']=='all'&&$_SESSION['pr_status']=='1') {
-      echo " เฉพาะสถานะ นำส่งแล้ว ทั้งหมด";
+      echo " เฉพาะสถานะ ส่งคืนแล้ว ทั้งหมด";
   } elseif ($_SESSION['pr_status']=='1') {
-      echo " เฉพาะสถานะ นำส่งแล้ว";
+      echo " เฉพาะสถานะ ส่งคืนแล้ว";
   }
       ?></h2>
                     <p>จัดการรายละเอียดการเบิก-จ่ายถังแก๊สออกซิเจน</p>
@@ -148,10 +148,10 @@
       }?>>ทั้งหมด</option>
                                                 <option value="0" <?php if ($_SESSION['pr_status']=='0') {
           echo "selected";
-      }?>>ยังไม่นำส่ง</option>
+      }?>>อยู่ระหว่างการใช้งาน</option>
                                                 <option value="1" <?php if ($_SESSION['pr_status']=='1') {
           echo "selected";
-      }?>>นำส่งแล้ว</option>
+      }?>>ส่งคืนแล้ว</option>
                                             </select>
                                         </div>
                                     </div>
@@ -161,9 +161,9 @@
                                     <button type="button" class="btn btn-primary"
                                         onclick="location.href='<?php echo base_url();?>Dashboard/View/all/all/all/';">ดูข้อมูลทั้งหมด</button>
                                     <button type="button" class="btn btn-danger"
-                                        onclick="location.href='<?php echo base_url();?>Dashboard/View/all/all/0/';">ดูข้อมูลสถานะยังไม่นำส่งทั้งหมด</button>
+                                        onclick="location.href='<?php echo base_url();?>Dashboard/View/all/all/0/';">ดูข้อมูลสถานะอยู่ระหว่างการใช้งานทั้งหมด</button>
                                     <button type="button" class="btn btn-success"
-                                        onclick="location.href='<?php echo base_url();?>Dashboard/View/all/all/1/';">ดูข้อมูลสถานะนำส่งแล้วทั้งหมด</button>
+                                        onclick="location.href='<?php echo base_url();?>Dashboard/View/all/all/1/';">ดูข้อมูลสถานะส่งคืนแล้วทั้งหมด</button>
                                 </div>
                             </form>
                         </div>
@@ -211,9 +211,9 @@
                                             <td><?php echo $inventory['return_date'] ?></td>
                                             <td><?php echo $inventory['return_name'] ?></td><?php } ?>
                                             <td><?php if ($inventory['status']=='0') {
-                  echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
+                  echo "<span style='color:red;font-weight:bold'>อยู่ระหว่างการใช้งาน</span>";
               } elseif ($inventory['status']=='1') {
-                  echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
+                  echo "<span style='color:green;font-weight:bold'>ส่งคืนแล้ว</span>";
               } ?></td>
                                             <td>
                                                 <?php if ($inventory['status']=='0') { ?>

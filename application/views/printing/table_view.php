@@ -78,10 +78,10 @@
       echo " ถึงวันที่ ".$_SESSION['pr_end_date'];
   }
     if ($_SESSION['pr_status']=='0') {
-        echo " เฉพาะสถานะ ยังไม่นำส่ง";
+        echo " เฉพาะสถานะ อยู่ระหว่างการใช้งาน";
     }
   if ($_SESSION['pr_status']=='1') {
-      echo " เฉพาะสถานะ นำส่งแล้ว";
+      echo " เฉพาะสถานะ ส่งคืนแล้ว";
   }?></p>
     <table id="table-print" class="display responsive nowrap" style="width:100%">
         <thead>
@@ -112,9 +112,9 @@
                 <td><?php echo $inventory['return_date'] ?></td>
                 <td><?php echo $inventory['return_name'] ?></td><?php } ?>
                 <td><?php if ($inventory['status']=='0') {
-              echo "<span style='color:red;font-weight:bold'>ยังไม่นำส่ง</span>";
+              echo "<span style='color:red;font-weight:bold'>อยู่ระหว่างการใช้งาน</span>";
           } elseif ($inventory['status']=='1') {
-              echo "<span style='color:green;font-weight:bold'>นำส่งแล้ว</span>";
+              echo "<span style='color:green;font-weight:bold'>ส่งคืนแล้ว</span>";
           } ?></td>
             </tr>
             <?php
