@@ -64,17 +64,29 @@ class Dashboard extends Auth_Controller
                 $errors = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' อยู่ในสถานะการเบิกในปัจจุบัน ไม่สามารถเบิกซ้ำได้จนกว่าจะมีการนำส่งคืน';
                 echo json_encode(['error'=>$errors]);
             } else {
-                $data = array(
-                'take_date' => $_POST['take_date'],
-                'take_name' => $_POST['take_name'],
-                'tank_number' => $_POST['tank_number'],
-                'status' => '0'
-            );
-                $this->db->insert('inventory', $data);
-                echo json_encode(['success'=>'เพิ่มข้อมูลการเบิกของถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !']);
-                $_SESSION['result_message'] = 'เพิ่มข้อมูลการเบิกของถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !';
-                $_SESSION['result_message_type'] = 'success';
-                $this->session->mark_as_flash('result_message');
+                $this->db->select(array('id', 'tank_number'));
+                $this->db->from('tank');
+                $this->db->where('tank_number', $_POST['tank_number']);
+                $this->db->where('status', '1');
+
+                $query = $this->db->get();
+                $count = $query->num_rows();
+                if ($count=='0') {
+                    $errors = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' ไม่ได้ใช้งานอยู่ในปัจจุบัน หรือไม่มีอยู่ในระบบ โปรดตรวจสอบหมายเลขหัวถัง';
+                    echo json_encode(['error'=>$errors]);
+                } else {
+                    $data = array(
+                        'take_date' => $_POST['take_date'],
+                        'take_name' => $_POST['take_name'],
+                        'tank_number' => $_POST['tank_number'],
+                        'status' => '0'
+                    );
+                    $this->db->insert('inventory', $data);
+                    echo json_encode(['success'=>'เพิ่มข้อมูลการเบิกของถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !']);
+                    $_SESSION['result_message'] = 'เพิ่มข้อมูลการเบิกของถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' แล้ว !';
+                    $_SESSION['result_message_type'] = 'success';
+                    $this->session->mark_as_flash('result_message');
+                }
             }
         }
     }
