@@ -92,10 +92,10 @@ class Manage extends Auth_Controller
 
         if ($query2=='1') {
             $new_status = '0';
-            $new_status_desc = 'ปิดใช้งาน';
+            $new_status_desc = 'ส่งคืนบริษัท';
         } elseif ($query2=='0') {
             $new_status = '1';
-            $new_status_desc = 'เปิดใช้งาน';
+            $new_status_desc = 'พร้อมใช้งาน';
         }
     
         $data = array(
@@ -105,7 +105,7 @@ class Manage extends Auth_Controller
         $this->db->where('id', $query0);
         $this->db->update('tank', $data);
 
-        $_SESSION['result_message'] = $new_status_desc.'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$query1.' แล้ว !';
+        $_SESSION['result_message'] = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$query1.$new_status_desc.'แล้ว !';
         $_SESSION['result_message_type'] = 'success';
         $this->session->mark_as_flash('result_message');
 
