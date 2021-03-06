@@ -125,7 +125,7 @@ table td.expand {
           } elseif ($inventory['status']=='1') {
               echo "<span style='color:green;font-weight:bold'>ส่งคืนแล้ว</span>";
           } ?></td>
-          <td class="shrink" style='text-align:center;'><?php if ($inventory['status']=='1') {
+          <td class="shrink"><?php if ($inventory['status']=='1') {
               if ($inventory['return_color']=='green') {
                   echo "<span style='color:green;font-weight:bold'>██ สีเขียว</span>";
               } elseif ($inventory['return_color']=='yellow') {
