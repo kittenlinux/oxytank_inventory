@@ -83,10 +83,10 @@
                                             <td>
                                                 <?php if ($tank['status']=='1') {?><button type="button"
                                                     class="btn btn-danger"
-                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">สลับ</button><?php } ?>
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">ส่งคืนบริษัท</button><?php } ?>
                                                 <?php if ($tank['status']=='0') {?><button type="button"
                                                     class="btn btn-success"
-                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">สลับ</button><?php } ?>
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">พร้อมใช้งาน</button><?php } ?>
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $tank['id']; ?>';">แก้ไข</button>
                                                 <button type="button" class="btn btn-danger"
