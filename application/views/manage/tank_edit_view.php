@@ -55,12 +55,12 @@
                                     <input type="radio" id="status-on" name="status" value="1" <?php if ($query2=='1') {
     echo 'checked';
 }; ?>>
-                                    <label for="status-on">เปิด</label>
+                                    <label for="status-on">พร้อมใช้งาน</label>
 
                                     <input type="radio" id="status-off" name="status" value="0" <?php if ($query2=='0') {
     echo 'checked';
 }; ?>>
-                                    <label for="status-off">ปิด</label>
+                                    <label for="status-off">ส่งคืนบริษัท</label>
                                 </div>
                             </div>
                             <label for="model">หมายเลขหัวถัง :</label>

@@ -72,7 +72,7 @@ class Dashboard extends Auth_Controller
                 $query = $this->db->get();
                 $count = $query->num_rows();
                 if ($count=='0') {
-                    $errors = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' ไม่ได้ใช้งานอยู่ในปัจจุบัน หรือไม่มีอยู่ในระบบ โปรดตรวจสอบหมายเลขหัวถัง';
+                    $errors = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$_POST['tank_number'].' ส่งคืนบริษัท หรือไม่มีอยู่ในระบบ โปรดตรวจสอบหมายเลขหัวถัง';
                     echo json_encode(['error'=>$errors]);
                 } else {
                     $data = array(

@@ -64,9 +64,9 @@
       echo " ถึงวันที่ ".$_SESSION['pr_end_date'];
   }
   if ($_SESSION['pr_start_date']=='all'&&$_SESSION['pr_end_date']=='all'&&$_SESSION['pr_status']=='0') {
-      echo " เฉพาะสถานะ อยู่ระหว่างการใช้งาน ทั้งหมด";
+      echo " เฉพาะสถานะ กำลังใช้งาน ทั้งหมด";
   } elseif ($_SESSION['pr_status']=='0') {
-      echo " เฉพาะสถานะ อยู่ระหว่างการใช้งาน";
+      echo " เฉพาะสถานะ กำลังใช้งาน";
   }
   if ($_SESSION['pr_start_date']=='all'&&$_SESSION['pr_end_date']=='all'&&$_SESSION['pr_status']=='1') {
       echo " เฉพาะสถานะ ส่งคืนแล้ว ทั้งหมด";
@@ -148,7 +148,7 @@
       }?>>ทั้งหมด</option>
                                                 <option value="0" <?php if ($_SESSION['pr_status']=='0') {
           echo "selected";
-      }?>>อยู่ระหว่างการใช้งาน</option>
+      }?>>กำลังใช้งาน</option>
                                                 <option value="1" <?php if ($_SESSION['pr_status']=='1') {
           echo "selected";
       }?>>ส่งคืนแล้ว</option>
@@ -212,7 +212,7 @@
                                             <td><?php echo $inventory['return_date'] ?></td>
                                             <td><?php echo $inventory['return_name'] ?></td><?php } ?>
                                             <td><?php if ($inventory['status']=='0') {
-                  echo "<span style='color:red;font-weight:bold'>อยู่ระหว่าง<br />การใช้งาน</span>";
+                  echo "<span style='color:red;font-weight:bold'>กำลังใช้งาน</span>";
               } elseif ($inventory['status']=='1') {
                   echo "<span style='color:green;font-weight:bold'>ส่งคืนแล้ว</span>";
               } ?></td>

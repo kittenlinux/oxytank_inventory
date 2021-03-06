@@ -86,7 +86,7 @@ table td.expand {
       echo " ถึงวันที่ ".$_SESSION['pr_end_date'];
   }
     if ($_SESSION['pr_status']=='0') {
-        echo " เฉพาะสถานะ อยู่ระหว่างการใช้งาน";
+        echo " เฉพาะสถานะ กำลังใช้งาน";
     }
   if ($_SESSION['pr_status']=='1') {
       echo " เฉพาะสถานะ ส่งคืนแล้ว";
@@ -121,7 +121,7 @@ table td.expand {
                 <td class="shrink" style='text-align:center;'><?php echo $inventory['return_date'] ?></td>
                 <td class="shrink"><?php echo $inventory['return_name'] ?></td><?php } ?>
                 <td class="shrink" style='text-align:center;'><?php if ($inventory['status']=='0') {
-              echo "<span style='color:red;font-weight:bold'>อยู่ระหว่างการใช้งาน</span>";
+              echo "<span style='color:red;font-weight:bold'>กำลังใช้งาน</span>";
           } elseif ($inventory['status']=='1') {
               echo "<span style='color:green;font-weight:bold'>ส่งคืนแล้ว</span>";
           } ?></td>

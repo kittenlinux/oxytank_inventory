@@ -75,7 +75,7 @@
                                     <div class="controls">
                                         <select class="form-control" id="status" name="status">
                                             <option value="all" selected>ทั้งหมด</option>
-                                            <option value="0">อยู่ระหว่างการใช้งาน</option>
+                                            <option value="0">กำลังใช้งาน</option>
                                             <option value="1">ส่งคืนแล้ว</option>
                                         </select>
                                     </div>
@@ -86,7 +86,7 @@
                                 <button type="button" class="btn btn-primary"
                                     onclick="window.open('<?php echo base_url();?>Printing/View/all/all/all/', '_blank');">ดูข้อมูลทั้งหมด</button>
                                 <button type="button" class="btn btn-danger"
-                                    onclick="window.open('<?php echo base_url();?>Printing/View/all/all/0/', '_blank');">ดูข้อมูลสถานะอยู่ระหว่างการใช้งานทั้งหมด</button>
+                                    onclick="window.open('<?php echo base_url();?>Printing/View/all/all/0/', '_blank');">ดูข้อมูลสถานะกำลังใช้งานทั้งหมด</button>
                                 <button type="button" class="btn btn-success"
                                     onclick="window.open('<?php echo base_url();?>Printing/View/all/all/1/', '_blank');">ดูข้อมูลสถานะส่งคืนแล้วทั้งหมด</button>
                             </div>

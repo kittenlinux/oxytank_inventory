@@ -76,17 +76,17 @@
                                             <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
                                             <td><?php echo $tank['tank_number'] ?></td>
                                             <td><?php if ($tank['status']=='1') {
-            echo "<span style='color:green;font-weight:bold'>เปิด</span>";
+            echo "<span style='color:green;font-weight:bold'>พร้อมใช้งาน</span>";
         } elseif ($tank['status']=='0') {
-            echo "<span style='color:red;font-weight:bold'>ปิด</span>";
+            echo "<span style='color:red;font-weight:bold'>ส่งคืนบริษัท</span>";
         } ?></td>
                                             <td>
                                                 <?php if ($tank['status']=='1') {?><button type="button"
                                                     class="btn btn-danger"
-                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">ปิด</button><?php } ?>
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">สลับ</button><?php } ?>
                                                 <?php if ($tank['status']=='0') {?><button type="button"
                                                     class="btn btn-success"
-                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">เปิด</button><?php } ?>
+                                                    onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Switch/<?php echo $tank['id']; ?>';">สลับ</button><?php } ?>
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="location.href='<?php echo base_url(); ?>Manage/Tank_Edit/<?php echo $tank['id']; ?>';">แก้ไข</button>
                                                 <button type="button" class="btn btn-danger"
