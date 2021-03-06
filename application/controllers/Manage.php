@@ -106,7 +106,12 @@ class Manage extends Auth_Controller
         $this->db->update('tank', $data);
 
         $_SESSION['result_message'] = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$query1.' '.$new_status_desc.'แล้ว !';
-        $_SESSION['result_message_type'] = 'success';
+        if ($new_status=='0') {
+            $_SESSION['result_message_type'] = 'danger';
+        } elseif ($new_status=='1') {
+            $_SESSION['result_message_type'] = 'success';
+        }
+        
         $this->session->mark_as_flash('result_message');
 
         redirect('Manage/Tank');
