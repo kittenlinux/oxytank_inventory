@@ -105,7 +105,7 @@ class Manage extends Auth_Controller
         $this->db->where('id', $query0);
         $this->db->update('tank', $data);
 
-        $_SESSION['result_message'] = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$query1.$new_status_desc.'แล้ว !';
+        $_SESSION['result_message'] = 'ถังแก๊สออกซิเจน หมายเลขหัวถัง '.$query1.' '.$new_status_desc.'แล้ว !';
         $_SESSION['result_message_type'] = 'success';
         $this->session->mark_as_flash('result_message');
 
