@@ -219,6 +219,7 @@ class Dashboard extends Auth_Controller
         $this->form_validation->set_rules('take_name', 'ชื่อผู้เบิก', 'trim|required');
         $this->form_validation->set_rules('return_date', 'วันที่นำส่งคืน', 'trim|required');
         $this->form_validation->set_rules('return_name', 'ชื่อผู้นำส่งคืน', 'trim|required');
+        $this->form_validation->set_rules('return_color', 'สถานะคงเหลือ :', 'trim|required');
         $this->form_validation->set_rules('tank_number', 'หมายเลขหัวถัง', 'trim|required');
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
@@ -229,6 +230,7 @@ class Dashboard extends Auth_Controller
                 'take_name' => $_POST['take_name'],
                 'return_date' => $_POST['return_date'],
                 'return_name' => $_POST['return_name'],
+                'return_color' => $_POST['return_color'],
                 'tank_number' => $_POST['tank_number']
             );
             $this->db->where('id', $id);
