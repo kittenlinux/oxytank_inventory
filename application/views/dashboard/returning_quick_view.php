@@ -74,6 +74,22 @@
                                     </select>
                                 </div>
                             </div>
+                            <label for="color">สถานะคงเหลือ :</label>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <input type="radio" id="status-green" name="return_color" value="green"
+                                        onchange="enable_submit()" onfocus="enable_submit()">
+                                    <label for="status-green" style='color:green;font-weight:bold'>██ สีเขียว</label>
+
+                                    <input type="radio" id="status-yellow" name="return_color" value="yellow"
+                                        onchange="enable_submit()" onfocus="enable_submit()">
+                                    <label for="status-yellow" style='color:#FFBF00;font-weight:bold'>██ สีเหลือง</label>
+
+                                    <input type="radio" id="status-red" name="return_color" value="red"
+                                        onchange="enable_submit()" onfocus="enable_submit()">
+                                    <label for="status-red" style='color:red;font-weight:bold'>██ สีแดง</label>
+                                </div>
+                            </div>
                             <label for="model">หมายเลขหัวถัง :</label>
                             <div class="form-group">
                                 <div class="controls">
@@ -109,8 +125,9 @@ if (document.title != newTitle) {
 }
 
 function enable_submit() {
+    var selector = document.querySelector('input[name="return_color"]:checked');
     var e = document.getElementById("return_name");
-    if (e.options[e.selectedIndex].value !== "0") {
+    if (e.options[e.selectedIndex].value !== "0" && selector) {
         $('#submit').removeAttr('disabled');
     }
 }
@@ -132,6 +149,7 @@ $(document).ready(function() {
 
         var return_date = $("input[name='return_date']").val();
         var return_name = $("#return_name").children("option").filter(":selected").text();
+        var return_color = $("input[name='return_color']:checked").val();
         var tank_number = $("input[name='tank_number']").val();
 
         $.ajax({
@@ -141,6 +159,7 @@ $(document).ready(function() {
             data: {
                 return_date: return_date,
                 return_name: return_name,
+                return_color: return_color,
                 tank_number: tank_number
             },
             success: function(data) {

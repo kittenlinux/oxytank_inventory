@@ -110,6 +110,7 @@ class Dashboard extends Auth_Controller
 
         $this->form_validation->set_rules('return_date', 'วันที่นำส่งคืน', 'trim|required');
         $this->form_validation->set_rules('return_name', 'ชื่อผู้นำส่งคืน', 'trim|required');
+        $this->form_validation->set_rules('return_color', 'สถานะคงเหลือ', 'trim|required');
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
             echo json_encode(['error'=>$errors]);
@@ -117,6 +118,7 @@ class Dashboard extends Auth_Controller
             $data = array(
                 'return_date' => $_POST['return_date'],
                 'return_name' => $_POST['return_name'],
+                'return_color' => $_POST['return_color'],
                 'status' => '1'
             );
             $this->db->where('id', $id);
@@ -137,6 +139,7 @@ class Dashboard extends Auth_Controller
     {
         $this->form_validation->set_rules('return_date', 'วันที่นำส่งคืน', 'trim|required');
         $this->form_validation->set_rules('return_name', 'ชื่อผู้นำส่งคืน', 'trim|required');
+        $this->form_validation->set_rules('return_color', 'สถานะคงเหลือ :', 'trim|required');
         $this->form_validation->set_rules('tank_number', 'หมายเลขหัวถัง', 'trim|required');
         if ($this->form_validation->run()===false) {
             $errors = validation_errors();
@@ -162,6 +165,7 @@ class Dashboard extends Auth_Controller
                 $data = array(
                     'return_date' => $_POST['return_date'],
                     'return_name' => $_POST['return_name'],
+                    'return_color' => $_POST['return_color'],
                     'status' => '1'
                 );
                 $this->db->where('id', $query0);

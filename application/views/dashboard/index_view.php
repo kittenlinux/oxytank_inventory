@@ -186,9 +186,10 @@
                                             <th>หมายเลขหัวถัง</th>
                                             <th>วันที่เบิก</th>
                                             <th>ชื่อผู้เบิก</th>
-                                            <th>วันที่นำส่งคืน</th>
-                                            <th>ชื่อผู้นำส่งคืน</th>
+                                            <th>วันที่<br />นำส่งคืน</th>
+                                            <th>ชื่อผู้<br />นำส่งคืน</th>
                                             <th>สถานะ</th>
+                                            <th>สถานะ<br />คงเหลือ</th>
                                             <th>การดำเนินการ</th>
                                         </tr>
                                     </thead>
@@ -211,9 +212,20 @@
                                             <td><?php echo $inventory['return_date'] ?></td>
                                             <td><?php echo $inventory['return_name'] ?></td><?php } ?>
                                             <td><?php if ($inventory['status']=='0') {
-                  echo "<span style='color:red;font-weight:bold'>อยู่ระหว่างการใช้งาน</span>";
+                  echo "<span style='color:red;font-weight:bold'>อยู่ระหว่าง<br />การใช้งาน</span>";
               } elseif ($inventory['status']=='1') {
                   echo "<span style='color:green;font-weight:bold'>ส่งคืนแล้ว</span>";
+              } ?></td>
+                                            <td><?php if ($inventory['status']=='1') {
+                  if ($inventory['return_color']=='green') {
+                      echo "<span style='color:green;font-weight:bold'>██ สีเขียว</span>";
+                  } elseif ($inventory['return_color']=='yellow') {
+                      echo "<span style='color:#FFBF00;font-weight:bold'>██ สีเหลือง</span>";
+                  } elseif ($inventory['return_color']=='red') {
+                      echo "<span style='color:red;font-weight:bold'>██ สีแดง</span>";
+                  }
+              } else {
+                  echo "-";
               } ?></td>
                                             <td>
                                                 <?php if ($inventory['status']=='0') { ?>
@@ -240,9 +252,10 @@
                                             <th>หมายเลขหัวถัง</th>
                                             <th>วันที่เบิก</th>
                                             <th>ชื่อผู้เบิก</th>
-                                            <th>วันที่นำส่งคืน</th>
-                                            <th>ชื่อผู้นำส่งคืน</th>
+                                            <th>วันที่<br />นำส่งคืน</th>
+                                            <th>ชื่อผู้<br />นำส่งคืน</th>
                                             <th>สถานะ</th>
+                                            <th>สถานะ<br />คงเหลือ</th>
                                             <th>การดำเนินการ</th>
                                         </tr>
                                     </tfoot>

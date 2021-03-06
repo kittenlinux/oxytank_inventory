@@ -23,6 +23,7 @@
         $query03 = $row->tank_number;
         $query04 = $row->return_date;
         $query05 = $row->return_name;
+        $query06 = $row->return_color;
     }
 ?>
 <section id="dashboard">
@@ -93,8 +94,8 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <div class='input-group date' id='datetimepicker2'>
-                                        <input type='text' class="form-control" id="return_date" name="return_date" required
-                                            style="margin-bottom: auto;" value="<?php echo $query04; ?>" />
+                                        <input type='text' class="form-control" id="return_date" name="return_date"
+                                            required style="margin-bottom: auto;" value="<?php echo $query04; ?>" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -104,9 +105,31 @@
                             <label for="model">ชื่อผู้นำส่งคืน :</label>
                             <div class="form-group">
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="ชื่อผู้นำส่งคืน" id="return_name"
-                                        name="return_name" required value="<?php echo $query05; ?>" autofocus
-                                        list="employee" />
+                                    <input type="text" class="form-control" placeholder="ชื่อผู้นำส่งคืน"
+                                        id="return_name" name="return_name" required value="<?php echo $query05; ?>"
+                                        autofocus list="employee" />
+                                </div>
+                            </div>
+                            <label for="color">สถานะคงเหลือ :</label>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <input type="radio" id="status-green" name="return_color" value="green"
+                                        onchange="enable_submit()" onfocus="enable_submit()" <?php if ($query06=='green') {
+                                        echo 'checked';
+                                    }; ?>>
+                                    <label for="status-green" style='color:green;font-weight:bold'>███ เขียว</label>
+
+                                    <input type="radio" id="status-yellow" name="return_color" value="yellow"
+                                        onchange="enable_submit()" onfocus="enable_submit()" <?php if ($query06=='yellow') {
+                                        echo 'checked';
+                                    }; ?>>
+                                    <label for="status-yellow" style='color:#FFBF00;font-weight:bold'>███ เหลือง</label>
+
+                                    <input type="radio" id="status-red" name="return_color" value="red"
+                                        onchange="enable_submit()" onfocus="enable_submit()" <?php if ($query06=='red') {
+                                        echo 'checked';
+                                    }; ?>>
+                                    <label for="status-red" style='color:red;font-weight:bold'>███ แดง</label>
                                 </div>
                             </div>
                             <label for="model">หมายเลขหัวถัง :</label>
@@ -166,6 +189,7 @@ $(document).ready(function() {
         var take_name = $("input[name='take_name']").val();
         var return_date = $("input[name='return_date']").val();
         var return_name = $("input[name='return_name']").val();
+        var return_color = $("input[name='return_color']:checked").val();
         var tank_number = $("input[name='tank_number']").val();
 
         $.ajax({
@@ -177,6 +201,7 @@ $(document).ready(function() {
                 take_name: take_name,
                 return_date: return_date,
                 return_name: return_name,
+                return_color: return_color,
                 tank_number: tank_number
             },
             success: function(data) {

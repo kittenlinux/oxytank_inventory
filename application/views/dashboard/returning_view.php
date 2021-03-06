@@ -52,7 +52,8 @@
                         <h4 class="classic-title"><span>ข้อมูลการนำส่ง</span></h4>
 
                         <!-- Start Contact Form -->
-                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form" autocomplete="off">
+                        <form accept-charset="utf-8" role="form" class="contact-form" id="contact-form"
+                            autocomplete="off">
                             <div class="alert alert-danger print-error-msg" style="display:none"></div>
                             <p>วันที่เบิก : <?php echo $query3; ?></p>
                             <p>ชื่อผู้เบิก : <?php echo $query4; ?></p>
@@ -60,8 +61,8 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <div class='input-group date' id='datetimepicker'>
-                                        <input type='text' class="form-control" id="return_date" name="return_date" required
-                                            style="margin-bottom: auto;" />
+                                        <input type='text' class="form-control" id="return_date" name="return_date"
+                                            required style="margin-bottom: auto;" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -79,6 +80,22 @@
 }
                                     ?>
                                     </select>
+                                </div>
+                            </div>
+                            <label for="color">สถานะคงเหลือ :</label>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <input type="radio" id="status-green" name="return_color" value="green"
+                                        onchange="enable_submit()" onfocus="enable_submit()">
+                                    <label for="status-green" style='color:green;font-weight:bold'>██ สีเขียว</label>
+
+                                    <input type="radio" id="status-yellow" name="return_color" value="yellow"
+                                        onchange="enable_submit()" onfocus="enable_submit()">
+                                    <label for="status-yellow" style='color:#FFBF00;font-weight:bold'>██ สีเหลือง</label>
+
+                                    <input type="radio" id="status-red" name="return_color" value="red"
+                                        onchange="enable_submit()" onfocus="enable_submit()">
+                                    <label for="status-red" style='color:red;font-weight:bold'>██ สีแดง</label>
                                 </div>
                             </div>
                             <button type="submit" id="submit" class="btn-submit btn-system btn-large"
@@ -103,8 +120,9 @@ if (document.title != newTitle) {
 }
 
 function enable_submit() {
+    var selector = document.querySelector('input[name="return_color"]:checked');
     var e = document.getElementById("return_name");
-    if (e.options[e.selectedIndex].value !== "0") {
+    if (e.options[e.selectedIndex].value !== "0" && selector) {
         $('#submit').removeAttr('disabled');
     }
 }
@@ -126,6 +144,7 @@ $(document).ready(function() {
 
         var return_date = $("input[name='return_date']").val();
         var return_name = $("#return_name").children("option").filter(":selected").text();
+        var return_color = $("input[name='return_color']:checked").val();
 
         $.ajax({
             url: "<?php echo base_url(); ?>Dashboard/Returning_Action/<?php echo $_SESSION['id']; ?>",
@@ -133,7 +152,8 @@ $(document).ready(function() {
             dataType: "json",
             data: {
                 return_date: return_date,
-                return_name: return_name
+                return_name: return_name,
+                return_color: return_color
             },
             success: function(data) {
                 if ($.isEmptyObject(data.error)) {

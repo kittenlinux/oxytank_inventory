@@ -64,7 +64,15 @@
     td {
         border: 1px solid black;
         border-collapse: collapse;
+        table-layout: auto;
     }
+
+    table td.shrink {
+    white-space:nowrap
+}
+table td.expand {
+    width: 40%
+}
     </style>
 </head>
 
@@ -86,13 +94,14 @@
     <table id="table-print" class="display responsive nowrap" style="width:100%">
         <thead>
             <tr>
-                <th>No.</th>
-                <th>หมายเลขหัวถัง</th>
-                <th>วันที่เบิก</th>
-                <th>ชื่อผู้เบิก</th>
-                <th>วันที่นำส่งคืน</th>
-                <th>ชื่อผู้นำส่งคืน</th>
-                <th>สถานะ</th>
+                <th class="shrink">No.</th>
+                <th class="expand">หมายเลขหัวถัง</th>
+                <th class="shrink">วันที่เบิก</th>
+                <th class="shrink">ชื่อผู้เบิก</th>
+                <th class="shrink">วันที่นำส่งคืน</th>
+                <th class="shrink">ชื่อผู้นำส่งคืน</th>
+                <th class="shrink">สถานะ</th>
+                <th class="shrink">สถานะ<br />คงเหลือ</th>
             </tr>
         </thead>
         <tbody>
@@ -102,19 +111,30 @@
       foreach ($query as $inventory) {
           $cnt++; ?>
             <tr>
-                <td><span style='font-weight:bold'><?php echo $cnt ?></span></td>
-                <td><?php echo $inventory['tank_number'] ?></td>
-                <td><?php echo $inventory['take_date'] ?></td>
-                <td><?php echo $inventory['take_name'] ?></td>
+                <td class="shrink" style='text-align:center;'><span style='font-weight:bold'><?php echo $cnt ?></span></td>
+                <td class="expand"><?php echo $inventory['tank_number'] ?></td>
+                <td class="shrink" style='text-align:center;'><?php echo $inventory['take_date'] ?></td>
+                <td class="shrink"><?php echo $inventory['take_name'] ?></td>
                 <?php if ($inventory['status']=='0') { ?>
-                <td><?php echo "-" ?></td>
-                <td><?php echo "-" ?></td><?php } elseif ($inventory['status']=='1') { ?>
-                <td><?php echo $inventory['return_date'] ?></td>
-                <td><?php echo $inventory['return_name'] ?></td><?php } ?>
-                <td><?php if ($inventory['status']=='0') {
+                <td class="shrink" style='text-align:center;'><?php echo "-" ?></td>
+                <td class="shrink"><?php echo "-" ?></td><?php } elseif ($inventory['status']=='1') { ?>
+                <td class="shrink" style='text-align:center;'><?php echo $inventory['return_date'] ?></td>
+                <td class="shrink"><?php echo $inventory['return_name'] ?></td><?php } ?>
+                <td class="shrink" style='text-align:center;'><?php if ($inventory['status']=='0') {
               echo "<span style='color:red;font-weight:bold'>อยู่ระหว่างการใช้งาน</span>";
           } elseif ($inventory['status']=='1') {
               echo "<span style='color:green;font-weight:bold'>ส่งคืนแล้ว</span>";
+          } ?></td>
+          <td class="shrink" style='text-align:center;'><?php if ($inventory['status']=='1') {
+              if ($inventory['return_color']=='green') {
+                  echo "<span style='color:green;font-weight:bold'>██ สีเขียว</span>";
+              } elseif ($inventory['return_color']=='yellow') {
+                  echo "<span style='color:#FFBF00;font-weight:bold'>██ สีเหลือง</span>";
+              } elseif ($inventory['return_color']=='red') {
+                  echo "<span style='color:red;font-weight:bold'>██ สีแดง</span>";
+              }
+          } else {
+              echo "-";
           } ?></td>
             </tr>
             <?php
