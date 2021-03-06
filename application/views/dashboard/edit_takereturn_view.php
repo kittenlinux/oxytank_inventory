@@ -12,7 +12,7 @@
 
     $query2 = $this->db->get()->result_array();
 
-    $this->db->select(array('take_date', 'take_name', 'return_date', 'return_name', 'tank_number'));
+    $this->db->select(array('take_date', 'take_name', 'return_date', 'return_name', 'return_color', 'tank_number'));
     $this->db->from('inventory');
     $this->db->where('id', $_SESSION['id']);
 
