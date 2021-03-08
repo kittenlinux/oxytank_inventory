@@ -22,10 +22,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta name="author" content="shadowshi">
 
     <!-- Bootstrap CSS  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
 
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css"
         media="screen">
 
     <!-- Slicknav -->
@@ -48,7 +48,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         title="red" media="screen" />
 
     <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+        href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker.min.css"
         media="screen" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -59,38 +59,38 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </script>
 
     <!-- Margo JS  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery-migrate.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/modernizr.min.js"></script>
     <!-- <script src="https://polyfill.io/v3/polyfill.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nivo-lightbox/1.3.1/nivo-lightbox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.appear/0.4.1/jquery.appear.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.fitvids.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/owl.carousel.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/nivo-lightbox.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/isotope.pkgd.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.appear.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>themes/default/js/count-to.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.textillate.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.lettering.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.easypiechart.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelement-and-player.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery-parallax-min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/mediaelement-and-player.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>themes/default/js/jquery.slicknav.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/th.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.form.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/th.min.js"></script>
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js">
+        src="<?php echo base_url(); ?>assets/js/bootstrap-datetimepicker.min.js">
     </script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@3/bootstrap-4.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.css">
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        href="<?php echo base_url(); ?>assets/css/bootstrap-datetimepicker.min.css" />
+    <script src="<?php echo base_url(); ?>assets/js/sweetalert2@9"></script>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
+    <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
 
     <!--[if IE 8]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
