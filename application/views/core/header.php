@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Page Description and Author -->
-    <meta name="description" content="Oxygen Tank Inventory - Let's track our bike in real-time !">
+    <meta name="description" content="Oxygen Tank Inventory">
     <meta name="author" content="shadowshi">
 
     <!-- Bootstrap CSS  -->
