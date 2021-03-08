@@ -25,7 +25,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
 
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css"
+    <link rel="stylesheet" href="<?php echo base_url(); ?>themes/default/css/font-awesome.min.css"
         media="screen">
 
     <!-- Slicknav -->
